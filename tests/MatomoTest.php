@@ -9,11 +9,20 @@ use VisualAppeal\Matomo;
 
 class MatomoTest extends TestCase
 {
-	public const TEST_SITE_URL = 'https://demo.matomo.org/';
+	/**
+  * @var string
+  */
+ final public const TEST_SITE_URL = 'https://demo.matomo.org/';
 
-	public const TEST_SITE_ID = 62;
+	/**
+  * @var int
+  */
+ final public const TEST_SITE_ID = 62;
 
-	public const TEST_TOKEN = 'anonymous';
+	/**
+  * @var string
+  */
+ final public const TEST_TOKEN = 'anonymous';
 
 	/**
 	 * Matomo API instance.
@@ -71,6 +80,7 @@ class MatomoTest extends TestCase
     {
 		$this->_matomo->setPeriod(Matomo::PERIOD_RANGE);
 		$this->_matomo->setRange(date('Y-m-d', time() - 3600 * 24), date('Y-m-d'));
+
 		$result = $this->_matomo->getVisitsSummary();
 
 		$this->assertIsObject($result);
@@ -86,6 +96,7 @@ class MatomoTest extends TestCase
     {
 		$this->_matomo->setPeriod(Matomo::PERIOD_DAY);
 		$this->_matomo->setDate(date('Y-m-d', time() - 3600 * 24));
+
 		$result = $this->_matomo->getVisitsSummary();
 
 		$this->assertIsObject($result);
@@ -102,6 +113,7 @@ class MatomoTest extends TestCase
     {
 		$this->_matomo->setPeriod(Matomo::PERIOD_DAY);
 		$this->_matomo->setRange(date('Y-m-d', time() - 3600 * 24 * 6), date('Y-m-d'));
+
 		$result = $this->_matomo->getVisitsSummary();
 
 		$this->assertIsObject($result);
@@ -139,6 +151,7 @@ class MatomoTest extends TestCase
 
 		$result3 = $this->_matomo->getVisits();
 		$result3 = $result3->$date;
+
 		$this->_matomo->reset();
 
 		// Multiple dates with default range end
@@ -147,6 +160,7 @@ class MatomoTest extends TestCase
 
 		$result4 = $this->_matomo->getVisits();
 		$result4 = $result4->$date;
+
 		$this->_matomo->reset();
 
 		// previousX respectively lastX date
@@ -214,6 +228,7 @@ class MatomoTest extends TestCase
     {
 		$this->_matomo->setDate('2019-07-01');
 		$this->_matomo->setPeriod(Matomo::PERIOD_WEEK);
+
 		$result = $this->_matomo->getWebsites('', [
 			'flat' => 1,
 		]);
@@ -231,6 +246,7 @@ class MatomoTest extends TestCase
     {
 		$this->_matomo->setDate('2019-07-01');
 		$this->_matomo->setPeriod(Matomo::PERIOD_WEEK);
+
 		$result = $this->_matomo->getCustomVariables();
 
 		$this->assertCount(15, $result);
