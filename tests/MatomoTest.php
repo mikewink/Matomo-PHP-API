@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use PHPUnit\Framework\TestCase;
 
 use VisualAppeal\InvalidRequestException;
@@ -7,25 +9,27 @@ use VisualAppeal\Matomo;
 
 class MatomoTest extends TestCase
 {
-	const TEST_SITE_URL = 'https://demo.matomo.org/';
+	public const TEST_SITE_URL = 'https://demo.matomo.org/';
 
-	const TEST_SITE_ID = 62;
+	public const TEST_SITE_ID = 62;
 
-	const TEST_TOKEN = 'anonymous';
+	public const TEST_TOKEN = 'anonymous';
 
 	/**
-	 * Matomo api instance.
-	 *
-	 * @var Matomo
-	 */
-	private $_matomo = null;
+	 * Matomo API instance.
+     */
+	private Matomo|null $_matomo = null;
 
     /**
      * Set up test class.
      */
 	protected function setUp(): void
 	{
-		$this->_matomo = new Matomo(self::TEST_SITE_URL, self::TEST_TOKEN, self::TEST_SITE_ID);
+		$this->_matomo = new Matomo(
+            self::TEST_SITE_URL,
+            self::TEST_TOKEN,
+            self::TEST_SITE_ID
+        );
 	}
 
     /**
@@ -40,18 +44,18 @@ class MatomoTest extends TestCase
 	/**
 	 * Test creation of class instance.
 	 */
-	public function testInit()
-	{
+	public function testInit(): void
+    {
 		$this->assertInstanceOf(Matomo::class, $this->_matomo);
 	}
 
     /**
-     * Test the default api call.
+     * Test the default API call.
      *
      * @throws InvalidRequestException
      */
-	public function testDefaultCall()
-	{
+	public function testDefaultCall(): void
+    {
 		$result = $this->_matomo->getVisits();
 
 		$this->assertIsInt($result);
@@ -63,8 +67,8 @@ class MatomoTest extends TestCase
      * @depends testDefaultCall
      * @throws InvalidRequestException
      */
-	public function testRangePeriod()
-	{
+	public function testRangePeriod(): void
+    {
 		$this->_matomo->setPeriod(Matomo::PERIOD_RANGE);
 		$this->_matomo->setRange(date('Y-m-d', time() - 3600 * 24), date('Y-m-d'));
 		$result = $this->_matomo->getVisitsSummary();
@@ -78,8 +82,8 @@ class MatomoTest extends TestCase
      * @depends testDefaultCall
      * @throws InvalidRequestException
      */
-	public function testDayPeriod()
-	{
+	public function testDayPeriod(): void
+    {
 		$this->_matomo->setPeriod(Matomo::PERIOD_DAY);
 		$this->_matomo->setDate(date('Y-m-d', time() - 3600 * 24));
 		$result = $this->_matomo->getVisitsSummary();
@@ -94,8 +98,8 @@ class MatomoTest extends TestCase
      * @link https://github.com/VisualAppeal/Matomo-PHP-API/issues/14
      * @throws InvalidRequestException
      */
-	public function testMultipleDates()
-	{
+	public function testMultipleDates(): void
+    {
 		$this->_matomo->setPeriod(Matomo::PERIOD_DAY);
 		$this->_matomo->setRange(date('Y-m-d', time() - 3600 * 24 * 6), date('Y-m-d'));
 		$result = $this->_matomo->getVisitsSummary();
@@ -111,8 +115,8 @@ class MatomoTest extends TestCase
      * @depends testMultipleDates
      * @throws InvalidRequestException
      */
-	public function testDateEquals()
-	{
+	public function testDateEquals(): void
+    {
 		$date = date('Y-m-d', time() - 3600 * 24 * 7);
 
 		// Range
@@ -166,8 +170,8 @@ class MatomoTest extends TestCase
      * @depends testDefaultCall
      * @throws InvalidRequestException
      */
-	public function testNoPeriodOrDate()
-	{
+	public function testNoPeriodOrDate(): void
+    {
 		$this->_matomo->setRange(null, null);
 		$this->_matomo->setDate(null);
 
@@ -180,7 +184,7 @@ class MatomoTest extends TestCase
      *
      * @throws InvalidRequestException
      */
-	public function testInvalidAccessToken()
+	public function testInvalidAccessToken(): void
     {
         $this->_matomo->setToken('403');
 
@@ -193,9 +197,9 @@ class MatomoTest extends TestCase
      *
      * @throws InvalidRequestException
      */
-    public function testInvalidUrl()
+    public function testInvalidUrl(): void
     {
-		$this->_matomo->setSite('http://example.com/404');
+		$this->_matomo->setSite('https://example.com/404');
 
 		$this->expectException(InvalidRequestException::class);
 		$this->_matomo->getVisitsSummary();
@@ -206,8 +210,8 @@ class MatomoTest extends TestCase
      *
      * @throws InvalidRequestException
      */
-	public function testOptionalParameters()
-	{
+	public function testOptionalParameters(): void
+    {
 		$this->_matomo->setDate('2019-07-01');
 		$this->_matomo->setPeriod(Matomo::PERIOD_WEEK);
 		$result = $this->_matomo->getWebsites('', [
@@ -223,8 +227,8 @@ class MatomoTest extends TestCase
      *
      * @throws InvalidRequestException
      */
-	public function testCustomVariables()
-	{
+	public function testCustomVariables(): void
+    {
 		$this->_matomo->setDate('2019-07-01');
 		$this->_matomo->setPeriod(Matomo::PERIOD_WEEK);
 		$result = $this->_matomo->getCustomVariables();
@@ -233,12 +237,12 @@ class MatomoTest extends TestCase
 	}
 
 	/**
-	 * Test if matamo can be used without the site ID parameter.
+	 * Test if Matomo can be used without the site ID parameter.
 	 *
 	 * @throws InvalidRequestException
 	 */
-	public function testEmptySiteId()
-	{
+	public function testEmptySiteId(): void
+    {
 		$matomo = new Matomo(self::TEST_SITE_URL, self::TEST_TOKEN);
 		$this->assertNull($matomo->getSiteId());
 
@@ -248,11 +252,13 @@ class MatomoTest extends TestCase
 		$this->assertIsObject($matomo->getTimezonesList());
 	}
 
-	/**
-	 * Test if matamo can be used without the site ID parameter.
-	 */
-	public function testGetImageGraph()
-	{
+    /**
+     * Test if Matomo can get a generated graph image png.
+     *
+     * @throws \VisualAppeal\InvalidRequestException
+     */
+	public function testGetImageGraph(): void
+    {
         /**
          * @var $response \Httpful\Response
          */
