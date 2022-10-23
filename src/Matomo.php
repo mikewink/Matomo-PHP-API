@@ -1,14 +1,17 @@
-<?php namespace VisualAppeal;
+<?php
 
-use InvalidArgumentException;
+declare(strict_types=1);
+
+namespace VisualAppeal;
 
 use Httpful\Exception\NetworkErrorException;
 use Httpful\Request;
 use Httpful\Response;
+use InvalidArgumentException;
 
 /**
  * Repository: https://github.com/VisualAppeal/Matomo-PHP-API
- * Official api reference: https://developer.matomo.org/api-reference/reporting-api
+ * Matomo Reporting API reference: https://developer.matomo.org/api-reference/reporting-api
  */
 class Matomo
 {
@@ -33,96 +36,96 @@ class Matomo
     const FORMAT_ORIGINAL = 'original';
 
     /**
-     * @var string URL of the matomo installation
+     * @var string URL of the Matomo installation
      */
-    private $_site;
+    private string $_site;
 
     /**
      * @var string API Access token
      */
-    private $_token;
+    private string $_token;
 
     /**
      * @var mixed The integer id of your website.
      */
-    private $_siteId;
+    private mixed $_siteId;
 
     /**
      * @var string The period you request the statistics for.
      */
-    private $_period;
+    private string $_period;
 
     /**
      * @var string
      */
-    private $_date = '';
+    private string $_date = '';
 
     /**
      * @var string Defines the format of the output.
      */
-    private $_format;
+    private string $_format;
 
     /**
      * @var int Defines the number of rows to be returned (-1: All rows).
      */
-    private $_filter_limit = 100;
+    private int $_filter_limit = 100;
 
     /**
      * @var string Returns data strings that can be internationalized and will be translated.
      */
-    private $_language = 'en';
+    private string $_language = 'en';
 
     /**
      * @var string
      */
-    private $_rangeStart;
+    private string $_rangeStart;
 
     /**
      * @var string|null
      */
-    private $_rangeEnd;
+    private ?string $_rangeEnd;
 
     /**
      * @var bool
      */
-    private $_isJsonDecodeAssoc = false;
+    private bool $_isJsonDecodeAssoc = false;
 
     /**
-     * @var bool If the certificate of the matomo installation should be verified.
+     * @var bool If the certificate of the Matomo installation should be verified.
      */
-    private $_verifySsl = false;
+    private bool $_verifySsl = false;
 
     /**
      * @var int How many redirects curl should execute until aborting.
      */
-    private $_maxRedirects = 5;
+    private int $_maxRedirects = 5;
 
     /**
      * @var int Timeout in seconds.
      */
-    private $_timeout = 5;
+    private int $_timeout = 5;
 
     /**
      * Create a new instance.
      *
-     * @param string $site URL of the matomo installation
-     * @param string $token API Access token
-     * @param int|null $siteId ID of the site
-     * @param string $format
-     * @param string $period
-     * @param string $date
-     * @param string $rangeStart
-     * @param string|null $rangeEnd
+     * @param  string  $site URL of the Matomo installation
+     * @param  string  $token API access token
+     * @param  int|null  $siteId ID of the site
+     * @param  string  $format
+     * @param  string  $period
+     * @param  string  $date
+     * @param  string  $rangeStart
+     * @param  string|null  $rangeEnd
      */
-    function __construct(
-        $site,
-        $token,
-        $siteId = null,
-        $format = self::FORMAT_JSON,
-        $period = self::PERIOD_DAY,
-        $date = self::DATE_YESTERDAY,
-        $rangeStart = '',
-        $rangeEnd = null
+    public function __construct(
+        string $site,
+        string $token,
+        int $siteId = null,
+        string $format = self::FORMAT_JSON,
+        string $period = self::PERIOD_DAY,
+        string $date = self::DATE_YESTERDAY,
+        string $rangeStart = '',
+        string $rangeEnd = null
     )
     {
         $this->_site = $site;
@@ -145,7 +148,7 @@ class Matomo
      */
 
     /**
-     * Get the url of the matomo installation
+     * Get the url of the Matomo installation.
      *
      * @return string
      */
@@ -155,7 +158,7 @@ class Matomo
     }
 
     /**
-     * Set the URL of the matomo installation
+     * Set the URL of the Matomo installation.
      *
      * @param string $url
      * @return $this
@@ -168,7 +171,7 @@ class Matomo
     }
 
     /**
-     * Get token
+     * Get the Matomo authentication token.
      *
      * @return string
      */
@@ -178,7 +181,7 @@ class Matomo
     }
 
     /**
-     * Set token
+     * Set the Matomo authentication token.
      *
      * @param string $token
      * @return $this
@@ -191,7 +194,7 @@ class Matomo
     }
 
     /**
-     * Get current site ID
+     * Get current Matomo site ID.
      *
      * @return mixed
      */
@@ -201,7 +204,7 @@ class Matomo
     }
 
     /**
-     * Set current site ID
+     * Set current Matomo site ID.
      *
      * @param mixed $id
      * @return $this
@@ -214,7 +217,7 @@ class Matomo
     }
 
     /**
-     * Get response format
+     * Get the Matomo response format.
      *
      * @return string
      */
@@ -224,7 +227,7 @@ class Matomo
     }
 
     /**
-     * Set response format
+     * Set the Matomo response format.
      *
      * @param string $format
      *        FORMAT_XML
@@ -244,7 +247,7 @@ class Matomo
     }
 
     /**
-     * Get language
+     * Get the Matomo language.
      *
      * @return string
      */
@@ -254,7 +257,7 @@ class Matomo
     }
 
     /**
-     * Set language
+     * Set the Matomo language.
      *
      * @param string $language
      * @return $this
@@ -267,7 +270,7 @@ class Matomo
     }
 
     /**
-     * Get date
+     * Get the Matomo date.
      *
      * @return string
      */
@@ -277,7 +280,7 @@ class Matomo
     }
 
     /**
-     * Set date
+     * Set the Matomo date.
      *
      * @param string|null $date Format Y-m-d or class constant:
      *        DATE_TODAY
@@ -294,7 +297,7 @@ class Matomo
     }
 
     /**
-     * Get  period
+     * Get the Matomo time period.
      *
      * @return string
      */
@@ -304,7 +307,7 @@ class Matomo
     }
 
     /**
-     * Set time period
+     * Set the Matomo time period.
      *
      * @param string $period
      *        PERIOD_DAY
@@ -322,7 +325,7 @@ class Matomo
     }
 
     /**
-     * Get the date range comma separated
+     * Get the Matomo, comma separated, date range.
      *
      * @return string
      */
@@ -330,13 +333,13 @@ class Matomo
     {
         if (empty($this->_rangeEnd)) {
             return $this->_rangeStart;
-        } else {
-            return $this->_rangeStart . ',' . $this->_rangeEnd;
         }
+
+        return $this->_rangeStart . ',' . $this->_rangeEnd;
     }
 
     /**
-     * Set date range
+     * Set Matomo date range.
      *
      * @param string|null $rangeStart e.g. 2012-02-10 (YYYY-mm-dd) or last5(lastX), previous12(previousY)...
      * @param string|null $rangeEnd e.g. 2012-02-12. Leave this parameter empty to request all data from
@@ -361,7 +364,7 @@ class Matomo
     }
 
     /**
-     * Get the number rows which should be returned
+     * Get the number of rows that should be returned.
      *
      * @return int
      */
@@ -371,7 +374,7 @@ class Matomo
     }
 
     /**
-     * Set the number of rows which should be returned
+     * Set the number of rows that should be returned.
      *
      * @param int $filterLimit
      * @return $this
@@ -384,7 +387,7 @@ class Matomo
     }
 
     /**
-     * Return if JSON decode an associate array
+     * Return if JSON decode an associate array.
      *
      * @return bool
      */
@@ -394,7 +397,7 @@ class Matomo
     }
 
     /**
-     * Sets the json_decode format
+     * Sets the json_decode format.
      *
      * @param bool $isJsonDecodeAssoc false decode as Object, true for decode as Associate array
      * @return $this
@@ -407,7 +410,7 @@ class Matomo
     }
 
     /**
-     * If the certificate of the matomo installation should be verified.
+     * If the certificate of the Matomo installation should be verified.
      *
      * @return bool
      */
@@ -417,7 +420,7 @@ class Matomo
     }
 
     /**
-     * Set if the certificate of the matomo installation should be verified.
+     * Set if the certificate of the Matomo installation should be verified.
      *
      * @param bool $verifySsl
      * @return Matomo
@@ -484,7 +487,7 @@ class Matomo
     }
 
     /**
-     * Requests to matomo api
+     * Requests to Matomo api
      */
 
     /**
@@ -664,7 +667,7 @@ class Matomo
      */
 
     /**
-     * Get current matomo version
+     * Get current Matomo version
      *
      * @param array $optional
      * @return bool|object
@@ -2043,11 +2046,11 @@ class Matomo
 
     /**
      * MODULE: EXAMPLE API
-     * Get api and matomo information
+     * Get api and Matomo information
      */
 
     /**
-     * Get the matomo version
+     * Get the Matomo version
      *
      * @param array $optional
      * @return bool|object
@@ -2112,7 +2115,7 @@ class Matomo
     }
 
     /**
-     * Get a short matomo description
+     * Get a short Matomo description
      *
      * @param array $optional
      * @return bool|object
@@ -2499,7 +2502,7 @@ class Matomo
      */
 
     /**
-     * Check if matomo can generate insights for current period
+     * Check if Matomo can generate insights for current period
      *
      * @param array $optional
      * @return bool|object
@@ -4829,7 +4832,7 @@ class Matomo
 
     /**
      * MODULE: USER MANAGER
-     * Manage matomo users
+     * Manage Matomo users
      */
 
     /**
