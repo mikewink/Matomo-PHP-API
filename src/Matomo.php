@@ -117,11 +117,6 @@ class Matomo
     private bool $_verifySsl = false;
 
     /**
-     * @var int How many redirects curl should execute until aborting.
-     */
-    private int $_maxRedirects = 5;
-
-    /**
      * @var int Timeout in seconds.
      */
     private int $_timeout = 5;
@@ -394,24 +389,6 @@ class Matomo
         return $this;
     }
 
-    /**
-     * How many redirects curl should execute until aborting.
-     */
-    public function getMaxRedirects(): int
-    {
-        return $this->_maxRedirects;
-    }
-
-    /**
-     * Set how many redirects curl should execute until aborting.
-     */
-    public function setMaxRedirects(int $maxRedirects): Matomo
-    {
-        $this->_maxRedirects = $maxRedirects;
-
-        return $this;
-    }
-
     public function getTimeout(): int
     {
         return $this->_timeout;
@@ -425,7 +402,7 @@ class Matomo
     }
 
     /**
-     * Reset all default variables.
+     * Reset all default variables in tests.
      */
     public function reset(): Matomo
     {
@@ -463,9 +440,6 @@ class Matomo
         } else {
             $req->disableStrictSSL();
         }
-
-        // @TODO Figure out how to set max redirects
-        //$req->followRedirects($this->_maxRedirects);
 
         $req->withTimeout($this->_timeout);
 
