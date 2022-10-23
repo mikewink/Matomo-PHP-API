@@ -1,5 +1,18 @@
 ## Changelog
 
+### 1.6.1 (2020/08/20)
+
+* Changed: When using the image graph call use the default php format
+* Fixed: How to use getImageGraph (#46) 
+
+### 1.6.0 (2020/08/20)
+
+* Changed: PHP >= 7.2 is now required
+
+### 1.5.3 (2020/08/20)
+
+* Changed: Fixed code formatting
+
 ### 1.5.2 (2019/08/01)
 
 * Fixed: The site ID can now be of mixed type again (e.g. 5, "9", "3,24,27", "all") or null
