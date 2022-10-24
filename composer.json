@@ -1,6 +1,6 @@
 {
     "name": "visualappeal/matomo-php-api",
-    "description": "OOP API wrapper for Matomo",
+    "description": "OOP wrapper for the Matomo Reporting API",
     "license": "MIT",
     "require": {
         "php": "^8.1.0",
