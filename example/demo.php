@@ -5,11 +5,21 @@ declare(strict_types=1);
 require(__DIR__.'/../vendor/autoload.php');
 require('config.php');
 
+use VisualAppeal\Enums\Format;
+use VisualAppeal\Enums\Period;
 use VisualAppeal\Matomo;
 
-$matomo = new Matomo(SITE_URL, TOKEN, SITE_ID, Matomo::FORMAT_JSON);
-$matomo->setLanguage('en');
-$matomo->setVerifySsl(true);
+$matomo = new Matomo(
+        site: SITE_URL,
+        token: TOKEN,
+        siteId: SITE_ID);
+
+$matomo->setFormat(Format::JSON)
+        ->setLanguage('en')
+        ->setVerifySsl(true);
+
+// Ray debug
+//ray($matomo->getApi());
 
 $site = $matomo->getSiteInformation();
 
@@ -21,7 +31,7 @@ $visitsL = $matomo->getSumVisitsLengthPretty();
 
 // Change time period to current month
 
-$matomo->setPeriod(Matomo::PERIOD_MONTH);
+$matomo->setPeriod(Period::MONTH);
 $matomo->setDate(date('Y-m-d'));
 
 $visitsMonth = $matomo->getVisits();
@@ -30,7 +40,7 @@ $visitsLMonth = $matomo->getSumVisitsLengthPretty();
 
 // Change time period to current year
 
-$matomo->setPeriod(Matomo::PERIOD_YEAR);
+$matomo->setPeriod(Period::YEAR);
 $matomo->setDate(date('Y-m-d'));
 
 $visitsYear = $matomo->getVisits();
@@ -38,7 +48,7 @@ $visitsUYear = '-'; //$matomo->getUniqueVisitors(); // To enable see https://mat
 $visitsLYear = $matomo->getSumVisitsLengthPretty();
 
 // Change time period to range
-$matomo->setPeriod(Matomo::PERIOD_RANGE);
+$matomo->setPeriod(Period::RANGE);
 
 $matomo->setRange(
     date('Y-m-d', mktime(0, 0, 0, RANGE_START_M, RANGE_START_D, RANGE_START_Y)),
@@ -80,7 +90,7 @@ $visitsLRange = $matomo->getSumVisitsLengthPretty();
     <ul>
         <li>Visit count: <?php echo $visits; ?></li>
         <li>Unique visit count: <?php echo $visitsU; ?></li>
-        <li>Summary of the visit lengths: <?php echo ($visitsL !== false) ? $visitsL : 0; ?></li>
+        <li>Total duration of visits: <?php echo ($visitsL !== false) ? $visitsL : 0; ?></li>
     </ul>
 
     <h2 class="text-sky-500">Summary <?php
@@ -88,7 +98,7 @@ $visitsLRange = $matomo->getSumVisitsLengthPretty();
     <ul>
         <li>Visit count: <?php echo $visitsMonth; ?></li>
         <li>Unique visit count: <?php echo $visitsUMonth; ?></li>
-        <li>Summary of the visit lengths: <?php echo ($visitsLMonth !== false) ? $visitsLMonth : 0; ?></li>
+        <li>Total duration of visits: <?php echo ($visitsLMonth !== false) ? $visitsLMonth : 0; ?></li>
     </ul>
 
     <h2 class="text-sky-500">Summary <?php
@@ -96,7 +106,7 @@ $visitsLRange = $matomo->getSumVisitsLengthPretty();
     <ul>
         <li>Visit count: <?php echo $visitsYear; ?></li>
         <li>Unique visit count: <?php echo $visitsUYear; ?></li>
-        <li>Summary of the visit lengths: <?php echo ($visitsLYear !== false) ? $visitsLYear : 0; ?></li>
+        <li>Total duration of visits: <?php echo ($visitsLYear !== false) ? $visitsLYear : 0; ?></li>
     </ul>
 
     <h2 class="text-sky-500">Summary <?php
@@ -105,7 +115,7 @@ $visitsLRange = $matomo->getSumVisitsLengthPretty();
     <ul>
         <li>Visit count: <?php echo $visitsRange; ?></li>
         <li>Unique visit count: <?php echo $visitsURange; ?></li>
-        <li>Summary of the visit lengths: <?php echo ($visitsLRange !== false) ? $visitsLRange : 0; ?></li>
+        <li>Total duration of visits: <?php echo ($visitsLRange !== false) ? $visitsLRange : 0; ?></li>
     </ul>
 
     <hr class="my-8">
