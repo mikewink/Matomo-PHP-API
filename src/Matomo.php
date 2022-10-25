@@ -8,6 +8,9 @@ use Httpful\Exception\NetworkErrorException;
 use Httpful\Request;
 use Httpful\Response;
 use InvalidArgumentException;
+use VisualAppeal\Enums\Date;
+use VisualAppeal\Enums\Format;
+use VisualAppeal\Enums\Period;
 use VisualAppeal\Traits\Actions;
 use VisualAppeal\Traits\Annotations;
 use VisualAppeal\Traits\Api;
@@ -26,8 +29,8 @@ use VisualAppeal\Traits\VisitsSummary;
  * dashboards, email reports, goals, funnels, custom dimensions, alerts,
  * videos, heatmaps, session recordings, custom segments, and more.
  *
- * @link Code repository: https://github.com/VisualAppeal/Matomo-PHP-API
- * @link API reference: https://developer.matomo.org/api-reference/reporting-api
+ * @see API reference: https://developer.matomo.org/api-reference/reporting-api
+ * @see Code repository: https://github.com/VisualAppeal/Matomo-PHP-API
  */
 class Matomo
 {
@@ -39,149 +42,128 @@ class Matomo
     use SiteManager;
     use VisitsSummary;
 
-    /**
-     * @var int
-     */
     final public const ERROR_EMPTY = 11;
 
-    /**
-     * @var string
-     */
-    final public const PERIOD_DAY = 'day';
+    /*
+        // Period parameter
+        final public const PERIOD_DAY = 'day';
+        final public const PERIOD_WEEK = 'week';
+        final public const PERIOD_MONTH = 'month';
+        final public const PERIOD_YEAR = 'year';
+        final public const PERIOD_RANGE = 'range';
 
-    /**
-     * @var string
-     */
-    final public const PERIOD_WEEK = 'week';
+        // Date parameter
+        final public const DATE_TODAY = 'today';
+        final public const DATE_YESTERDAY = 'yesterday';
+        final public const DATE_LAST_WEEK = 'lastWeek';
+        final public const DATE_LAST_MONTH = 'lastMonth';
+        final public const DATE_LAST_YEAR = 'lastYear';
 
-    /**
-     * @var string
-     */
-    final public const PERIOD_MONTH = 'month';
-
-    /**
-     * @var string
-     */
-    final public const PERIOD_YEAR = 'year';
-
-    /**
-     * @var string
-     */
-    final public const PERIOD_RANGE = 'range';
-
-    /**
-     * @var string
-     */
-    final public const DATE_TODAY = 'today';
-
-    /**
-     * @var string
-     */
-    final public const DATE_YESTERDAY = 'yesterday';
-
-    /**
-     * @var string
-     */
-    final public const FORMAT_XML = 'xml';
-
-    /**
-     * @var string
-     */
-    final public const FORMAT_JSON = 'json';
-
-    /**
-     * @var string
-     */
-    final public const FORMAT_CSV = 'csv';
-
-    /**
-     * @var string
-     */
-    final public const FORMAT_TSV = 'tsv';
-
-    /**
-     * @var string
-     */
-    final public const FORMAT_HTML = 'html';
-
-    /**
-     * @var string
-     */
-    final public const FORMAT_RSS = 'rss';
-
-    /**
-     * @var string
-     */
-    final public const FORMAT_PHP = 'php';
-
-    /**
-     * @var string
-     */
-    final public const FORMAT_ORIGINAL = 'original';
-
-    private string $_date = '';
-
-    /**
-     * @var int Defines the number of rows to be returned (-1: All rows).
-     */
-    private int $_filter_limit = 100;
-
-    /**
-     * @var string Returns data strings that can be internationalized and will be translated.
-     */
-    private string $_language = 'en';
-
-    private bool $_isJsonDecodeAssoc = false;
-
-    /**
-     * @var bool If the SSL certificate of the Matomo installation should be verified.
-     */
-    private bool $_verifySsl = false;
-
-    /**
-     * @var int Timeout in seconds.
-     */
-    private int $_timeout = 5;
-
+        // Result format parameter
+        final public const FORMAT_XML = 'xml';
+        final public const FORMAT_JSON = 'json';
+        final public const FORMAT_CSV = 'csv';
+        final public const FORMAT_TSV = 'tsv';
+        final public const FORMAT_HTML = 'html';
+        final public const FORMAT_RSS = 'rss';
+        final public const FORMAT_PHP = 'php';
+        final public const FORMAT_ORIGINAL = 'original';
+    */
 
     // Image Graph
+    /*
     final public const GRAPH_EVOLUTION = 'evolution';
     final public const GRAPH_VERTICAL_BAR = 'verticalBar';
     final public const GRAPH_PIE = 'pie';
     final public const GRAPH_PIE_3D = '3dPie';
+    */
 
+
+    public Format $format;
+
+    private int $filter_limit = 100;
+
+    // Optional Matomo Reporting API parameter
+    private string $language = 'en';
+
+    // Matomo PHP API specific
+    private int $timeout = 5;
+    private bool $verifySsl = false;
+    private bool $isJsonDecodeAssoc = false;
 
     /**
      * Create a new instance.
      *
-     * @param  string  $_site  URL of the Matomo installation
-     * @param  string  $_token  API access token
-     * @param  int|null  $_siteId  ID of the site
+     * @param string   $site   The URL of the Matomo installation.
+     * @param string   $token  The Matomo user authentication token.
+     * @param int|null $siteId The ID of the Matomo site.
      */
     public function __construct(
-        private string $_site,
-        private string $_token,
-        private ?int $_siteId = null,
-        private string $_format = self::FORMAT_JSON,
-        private string $_period = self::PERIOD_DAY,
-        string $date = self::DATE_YESTERDAY,
-        private ?string $_rangeStart = '',
-        private ?string $_rangeEnd = null
-    )
-    {
-        if (!empty($_rangeStart)) {
-            $this->setRange($_rangeStart, $_rangeEnd);
+        private string $site,
+        private string $token,
+        private ?int $siteId = null,
+        private ?Period $period = null,
+        private null|Date|string $date = null,
+        private ?string $rangeStart = '',
+        private ?string $rangeEnd = null
+    ) {
+        $this->format = Format::JSON;
+        $this->period = Period::DAY;
+
+        if (!empty($rangeStart)) {
+            $this->setRange($rangeStart, $rangeEnd);
         } else {
-            $this->setDate($date);
+            $this->setDate(Date::YESTERDAY);
         }
     }
 
     /**
-     * Get the url of the Matomo installation.
+     * Set Matomo date range.
+     *
+     * @param string|null $rangeStart e.g. 2012-02-10 (YYYY-mm-dd) or
+     *                                last5(lastX), previous12(previousY)…
+     * @param string|null $rangeEnd   e.g. 2012-02-12. Leave this parameter
+     *                                empty to request all data from
+     *                                $rangeStart until now
+     */
+    public function setRange(
+        string $rangeStart = null,
+        string $rangeEnd = null
+    ): Matomo {
+        $this->date = null;
+        $this->rangeStart = $rangeStart;
+        $this->rangeEnd = $rangeEnd;
+
+        if (is_null($rangeEnd)) {
+            if (str_contains($rangeStart, 'last') || str_contains($rangeStart,
+                    'previous')) {
+                $this->setDate($rangeStart);
+            } else {
+                $this->rangeEnd = Date::TODAY->value;
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set the Matomo date.
+     */
+    public function setDate(null|Date|string $date = null): Matomo
+    {
+        $this->date = $date;
+        $this->rangeStart = null;
+        $this->rangeEnd = null;
+
+        return $this;
+    }
+
+    /**
+     * Get the URL of the Matomo installation.
      */
     public function getSite(): string
     {
-        return $this->_site;
+        return $this->site;
     }
 
     /**
@@ -189,7 +171,7 @@ class Matomo
      */
     public function setSite(string $url): Matomo
     {
-        $this->_site = $url;
+        $this->site = trim($url, ' \t\n\r\0\x0B/');
 
         return $this;
     }
@@ -199,7 +181,7 @@ class Matomo
      */
     public function getToken(): string
     {
-        return $this->_token;
+        return $this->token;
     }
 
     /**
@@ -207,7 +189,7 @@ class Matomo
      */
     public function setToken(string $token): Matomo
     {
-        $this->_token = $token;
+        $this->token = trim($token, ' \t\n\r\0\x0B');
 
         return $this;
     }
@@ -217,44 +199,15 @@ class Matomo
      */
     public function getSiteId(): ?int
     {
-        return $this->_siteId;
+        return $this->siteId;
     }
 
     /**
      * Set current Matomo site ID.
-     *
-     * @param  mixed|null  $id
      */
-    public function setSiteId(mixed $id = null): Matomo
+    public function setSiteId(?int $id = null): Matomo
     {
-        $this->_siteId = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the Matomo response format.
-     */
-    public function getFormat(): string
-    {
-        return $this->_format;
-    }
-
-    /**
-     * Set the Matomo response format.
-     *
-     * @param string $format
-     *        FORMAT_XML
-     *        FORMAT_JSON
-     *        FORMAT_CSV
-     *        FORMAT_TSV
-     *        FORMAT_HTML
-     *        FORMAT_RSS
-     *        FORMAT_PHP
-     */
-    public function setFormat(string $format): Matomo
-    {
-        $this->_format = $format;
+        $this->siteId = $id;
 
         return $this;
     }
@@ -264,7 +217,7 @@ class Matomo
      */
     public function getLanguage(): string
     {
-        return $this->_language;
+        return $this->language;
     }
 
     /**
@@ -272,95 +225,31 @@ class Matomo
      */
     public function setLanguage(string $language): Matomo
     {
-        $this->_language = $language;
+        $this->language = $language;
 
         return $this;
-    }
-
-    /**
-     * Get the Matomo date.
-     */
-    public function getDate(): string
-    {
-        return $this->_date;
-    }
-
-    /**
-     * Set the Matomo date.
-     *
-     * @param string|null $date Format Y-m-d or class constant:
-     *        DATE_TODAY
-     *        DATE_YESTERDAY
-     */
-    public function setDate(string $date = null): Matomo
-    {
-        $this->_date = $date;
-        $this->_rangeStart = null;
-        $this->_rangeEnd = null;
-
-        return $this;
-    }
-
-    /**
-     * Get the Matomo time period.
-     */
-    public function getPeriod(): string
-    {
-        return $this->_period;
     }
 
     /**
      * Set the Matomo time period.
-     *
-     * @param string $period
-     *        PERIOD_DAY
-     *        PERIOD_MONTH
-     *        PERIOD_WEEK
-     *        PERIOD_YEAR
-     *        PERIOD_RANGE
      */
-    public function setPeriod(string $period): Matomo
+    public function setPeriod(Period $period): Matomo
     {
-        $this->_period = $period;
+        $this->period = $period;
 
         return $this;
     }
 
     /**
-     * Get the Matomo, comma separated, date range.
+     * Get the Matomo date range, separated by a comma.
      */
     public function getRange(): string
     {
-        if (empty($this->_rangeEnd)) {
-            return $this->_rangeStart;
+        if (empty($this->rangeEnd)) {
+            return $this->rangeStart;
         }
 
-        return $this->_rangeStart . ',' . $this->_rangeEnd;
-    }
-
-    /**
-     * Set Matomo date range.
-     *
-     * @param string|null $rangeStart e.g. 2012-02-10 (YYYY-mm-dd) or last5(lastX), previous12(previousY)...
-     * @param string|null $rangeEnd e.g. 2012-02-12. Leave this parameter empty to request all data from
-     *                         $rangeStart until now
-     */
-    public function setRange(string $rangeStart = null, string $rangeEnd = null): Matomo
-    {
-        $this->_date = '';
-        $this->_rangeStart = $rangeStart;
-        $this->_rangeEnd = $rangeEnd;
-
-        if (is_null($rangeEnd)) {
-            if (str_contains($rangeStart, 'last') || str_contains($rangeStart,
-                    'previous')) {
-                $this->setDate($rangeStart);
-            } else {
-                $this->_rangeEnd = self::DATE_TODAY;
-            }
-        }
-
-        return $this;
+        return $this->rangeStart.','.$this->rangeEnd;
     }
 
     /**
@@ -368,7 +257,7 @@ class Matomo
      */
     public function getFilterLimit(): int
     {
-        return $this->_filter_limit;
+        return $this->filter_limit;
     }
 
     /**
@@ -376,27 +265,25 @@ class Matomo
      */
     public function setFilterLimit(int $filterLimit): Matomo
     {
-        $this->_filter_limit = $filterLimit;
+        $this->filter_limit = $filterLimit;
 
         return $this;
     }
 
     /**
-     * Return if JSON decode an associate array.
+     * Checks if json_decode returns an associative array.
      */
     public function isJsonDecodeAssoc(): bool
     {
-        return $this->_isJsonDecodeAssoc;
+        return $this->isJsonDecodeAssoc;
     }
 
     /**
-     * Sets the json_decode format.
-     *
-     * @param bool $isJsonDecodeAssoc false decode as Object, true for decode as Associate array
+     * Sets the json_decode format to an associative array.
      */
     public function setIsJsonDecodeAssoc(bool $isJsonDecodeAssoc): Matomo
     {
-        $this->_isJsonDecodeAssoc = $isJsonDecodeAssoc;
+        $this->isJsonDecodeAssoc = $isJsonDecodeAssoc;
 
         return $this;
     }
@@ -406,7 +293,7 @@ class Matomo
      */
     public function getVerifySsl(): bool
     {
-        return $this->_verifySsl;
+        return $this->verifySsl;
     }
 
     /**
@@ -414,66 +301,78 @@ class Matomo
      */
     public function setVerifySsl(bool $verifySsl): Matomo
     {
-        $this->_verifySsl = $verifySsl;
-
-        return $this;
-    }
-
-    public function getTimeout(): int
-    {
-        return $this->_timeout;
-    }
-
-    public function setTimeout(int $timeout): Matomo
-    {
-        $this->_timeout = $timeout;
+        $this->verifySsl = $verifySsl;
 
         return $this;
     }
 
     /**
-     * Reset all default variables.
+     * Get the request timeout.
+     */
+    public function getTimeout(): int
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * Set the request timeout.
+     */
+    public function setTimeout(int $timeout): Matomo
+    {
+        $this->timeout = $timeout;
+
+        return $this;
+    }
+
+    /**
+     * Reset to default variables.
      */
     public function reset(): Matomo
     {
-        $this->_period = self::PERIOD_DAY;
-        $this->_date = '';
-        $this->_rangeStart = 'yesterday';
-        $this->_rangeEnd = null;
+        $this->period = PERIOD::DAY->value;
+        $this->date = '';
+        $this->rangeStart = DATE::YESTERDAY->value;
+        $this->rangeEnd = null;
 
         return $this;
     }
 
     /**
-     * Make API request
+     * Make a request to the Matomo Reporting API.
      *
-     * @param  string  $method  HTTP method
-     * @param  array  $params  Query parameters
-     * @param  array  $optional  Optional arguments for this API call
-     * @param  string|null  $format  Override the response format
+     * @param string      $method   Matomo Reporting API method
+     * @param array       $params   Method parameters
+     * @param array       $optional Optional parameters
+     * @param string|null $format   Override response format
      *
+     * @return mixed
      * @throws \VisualAppeal\InvalidRequestException
      */
-    private function _request(string $method, array $params = [], array $optional = [], string $format = null): array|string|int|object|bool
-    {
-        $url = $this->_parseUrl($method, $params + $optional);
+    private function request(
+        string $method,
+        array $params = [],
+        array $optional = [],
+        string $format = null
+    ): mixed {
+        $params += $optional;
+        $url = $this->parseUrl($method, $params);
 
-        if ($url === false) {
+        if ($url === '') {
             throw new InvalidRequestException('Could not parse URL!');
         }
 
         $req = Request::get($url);
 
-        if ($this->_verifySsl) {
+        if ($this->verifySsl) {
             $req->enableStrictSSL();
         } else {
             $req->disableStrictSSL();
         }
 
-        $req->withTimeout($this->_timeout);
+        $req->withTimeout($this->timeout);
 
         try {
-            $buffer = $req->send();
+            $response = $req->send();
         } catch (NetworkErrorException $networkErrorException) {
             throw new InvalidRequestException(
                 $networkErrorException->getMessage(),
@@ -483,10 +382,10 @@ class Matomo
         }
 
         try {
-            return $this->_finishResponse(
-                $this->_parseResponse($buffer, $format),
+            return $this->finishResponse(
+                $this->parseResponseWithFormat($response, $format),
                 $method,
-                $params + $optional
+                $params
             );
         } catch (InvalidResponseException $invalidResponseException) {
             throw new InvalidRequestException(
@@ -498,112 +397,133 @@ class Matomo
     }
 
     /**
-     * Validate response and return the values.
+     * Create the request URL with method and parameters.
      *
-     * @throws InvalidResponseException
-     */
-    private function _finishResponse(mixed $response, string $method, array $params): string|int|object|bool
-    {
-        $valid = $this->_isValidResponse($response);
-
-        if ($valid === true) {
-            return $response->value ?? $response;
-        }
-
-        throw new InvalidResponseException($valid . ' (' . $this->_parseUrl($method, $params) . ')');
-    }
-
-    /**
-     * Create request url with parameters
-     *
-     * @param string $method The request method
-     * @param array $params Request params
      * @throws InvalidArgumentException
      */
-    private function _parseUrl(string $method, array $params = []): bool|string
-    {
-        $params = [
+    private function parseUrl(
+        string $apiMethod,
+        array $apiParams = []
+    ): string {
+        $defaultParams = [
                 'module' => 'API',
-                'method' => $method,
-                'token_auth' => $this->_token,
-                'idSite' => $this->_siteId,
-                'period' => $this->_period,
-                'format' => $this->_format,
-                'language' => $this->_language,
-                'filter_limit' => $this->_filter_limit
-            ] + $params;
+                'method' => $apiMethod,
+                'token_auth' => $this->token,
+                'idSite' => $this->siteId,
+                'period' => $this->getPeriod(),
+                'format' => $this->getFormat(),
+                'language' => $this->language,
+                'filter_limit' => $this->filter_limit,
+            ] + $apiParams;
 
-        foreach ($params as $key => $value) {
-            $params[$key] = is_array($value) ? urlencode(implode(',', $value)) : urlencode((string) $value);
-        }
-
-        if (!empty($this->_rangeStart) && !empty($this->_rangeEnd)) {
-            $params += [
-                'date' => $this->_rangeStart.','.$this->_rangeEnd,
+        if (!empty($this->rangeStart) && !empty($this->rangeEnd)) {
+            $defaultParams += [
+                'date' => $this->rangeStart.','.$this->rangeEnd,
             ];
-        } elseif (!empty($this->_date)) {
-            $params += [
-                'date' => $this->_date,
+        } elseif (!empty($this->getDate())) {
+            $defaultParams += [
+                'date' => $this->getDate(),
             ];
         } else {
             throw new InvalidArgumentException('Specify a date or a date range!');
         }
 
-        $url = $this->_site;
+        return $this->site.'?'.http_build_query($defaultParams);
+    }
 
-        $i = 0;
-        foreach ($params as $param => $val) {
-            if (!empty($val)) {
-                ++$i;
-                if ($i > 1) {
-                    $url .= '&';
-                } else {
-                    $url .= '?';
-                }
+    /**
+     * Get the Matomo time period.
+     */
+    public function getPeriod(): string
+    {
+        return $this->period->value;
+    }
 
-                if (is_array($val)) {
-                    $val = implode(',', $val);
-                }
+    /**
+     * Get the Matomo response format.
+     */
+    public function getFormat(): string
+    {
+        return $this->format->value;
+    }
 
-                $url .= $param . '=' . $val;
-            }
+    /**
+     * Set the Matomo response format.*
+     */
+    public function setFormat(Format $format): Matomo
+    {
+        $this->format = $format;
+
+        return $this;
+    }
+
+    /**
+     * Get the Matomo date.
+     */
+    public function getDate(): string
+    {
+        return is_string($this->date) ? $this->date : $this->date->value;
+    }
+
+    /**
+     * Validate response and return the value(s).
+     *
+     * @throws InvalidResponseException
+     */
+    private function finishResponse(
+        mixed $response,
+        string $apiMethod,
+        array $apiParams
+    ): mixed {
+        $valid = $this->isValidResponse($response);
+
+        if ($valid) {
+            return $response->value ?? $response;
         }
 
-        return $url;
+        throw new InvalidResponseException($valid.' ('.$this->parseUrl($apiMethod,
+                $apiParams).')');
     }
 
     /**
      * Check if the request was successful.
      */
-    private function _isValidResponse(mixed $response): string|bool|int
+    private function isValidResponse(mixed $response): array|bool|int|string
     {
         if (is_null($response)) {
             return self::ERROR_EMPTY;
         }
 
         if (!(property_exists($response, 'result') && $response->result !== null)
-            || ($response->result !== 'error'))
-        {
+            || ($response->result !== 'error')) {
             return true;
+        }
+
+        if (is_array($response)) {
+            return $response;
         }
 
         return $response->message;
     }
 
     /**
-     * Parse request result
-     *
-     * @param  string|null  $overrideFormat  Override the default format
-     *
-     * @throws \JsonException
+     * Parse the response.
      */
-    private function _parseResponse(Response $response, string $overrideFormat = null): mixed
-    {
-        $format = $overrideFormat ?? $this->_format;
+    private function parseResponseWithFormat(
+        Response $response,
+        string $overrideFormat = null
+    ): mixed {
+        $format = $overrideFormat ?? $this->getFormat();
 
-        return match ($format) {
-            self::FORMAT_JSON => json_decode($response->getRawBody(), $this->_isJsonDecodeAssoc, 512, JSON_THROW_ON_ERROR),
-            default => $response,
-        };
+        if ($format === FORMAT::JSON->value) {
+            try {
+                return json_decode($response->getRawBody(),
+                    $this->isJsonDecodeAssoc, 512, JSON_THROW_ON_ERROR);
+            } catch (\JsonException $e) {
+                return $e->getMessage();
+            }
+        }
+
+        return $response->getRawBody();
     }
 }
