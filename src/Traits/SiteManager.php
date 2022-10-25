@@ -32,9 +32,9 @@ trait SiteManager
         string $doNotTrack = '',
         string $disableCookies = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('SitesManager.getJavascriptTag', [
+        return $this->request('SitesManager.getJavascriptTag', [
             'piwikUrl' => $matomoUrl,
             'mergeSubdomains' => $mergeSubdomains,
             'groupPageTitlesByDomain' => $groupPageTitlesByDomain,
@@ -59,9 +59,9 @@ trait SiteManager
         string $idGoal = '',
         string $revenue = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('SitesManager.getImageTrackingCode', [
+        return $this->request('SitesManager.getImageTrackingCode', [
             'piwikUrl' => $matomoUrl,
             'actionName' => $actionName,
             'idGoal' => $idGoal,
@@ -74,9 +74,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesFromGroup(string $group, array $optional = []): bool|object
+    public function getSitesFromGroup(string $group, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSitesFromGroup', [
+        return $this->request('SitesManager.getSitesFromGroup', [
             'group' => $group,
         ], $optional);
     }
@@ -88,9 +88,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesGroups(array $optional = []): bool|object
+    public function getSitesGroups(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSitesGroups', [], $optional);
+        return $this->request('SitesManager.getSitesGroups', [], $optional);
     }
 
     /**
@@ -98,19 +98,22 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSiteInformation(array $optional = []): bool|object
+    public function getSiteInformation(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSiteFromId', [], $optional);
+        return $this->request(
+            method: 'SitesManager.getSiteFromId',
+            optional: $optional
+        );
     }
 
     /**
-     * Get urls from current site.
+     * Get URLs from current site.
      *
      * @throws InvalidRequestException
      */
-    public function getSiteUrls(array $optional = []): bool|object
+    public function getSiteUrls(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSiteUrlsFromId', [], $optional);
+        return $this->request('SitesManager.getSiteUrlsFromId', [], $optional);
     }
 
     /**
@@ -118,9 +121,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getAllSites(array $optional = []): bool|object
+    public function getAllSites(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getAllSites', [], $optional);
+        return $this->request('SitesManager.getAllSites', [], $optional);
     }
 
     /**
@@ -128,9 +131,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getAllSitesId(array $optional = []): bool|object
+    public function getAllSitesId(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getAllSitesId', [], $optional);
+        return $this->request('SitesManager.getAllSitesId', [], $optional);
     }
 
     /**
@@ -138,9 +141,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesWithAdminAccess(array $optional = []): bool|object
+    public function getSitesWithAdminAccess(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSitesWithAdminAccess', [], $optional);
+        return $this->request('SitesManager.getSitesWithAdminAccess', [], $optional);
     }
 
     /**
@@ -148,9 +151,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesWithViewAccess(array $optional = []): bool|object
+    public function getSitesWithViewAccess(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSitesWithViewAccess', [], $optional);
+        return $this->request('SitesManager.getSitesWithViewAccess', [], $optional);
     }
 
     /**
@@ -158,9 +161,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesWithAtLeastViewAccess(string $limit = '', array $optional = []): bool|object
+    public function getSitesWithAtLeastViewAccess(string $limit = '', array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSitesWithAtLeastViewAccess', [
+        return $this->request('SitesManager.getSitesWithAtLeastViewAccess', [
             'limit' => $limit,
         ], $optional);
     }
@@ -170,9 +173,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesIdWithAdminAccess(array $optional = []): bool|object
+    public function getSitesIdWithAdminAccess(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSitesIdWithAdminAccess', [], $optional);
+        return $this->request('SitesManager.getSitesIdWithAdminAccess', [], $optional);
     }
 
     /**
@@ -180,9 +183,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesIdWithViewAccess(array $optional = []): bool|object
+    public function getSitesIdWithViewAccess(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSitesIdWithViewAccess', [], $optional);
+        return $this->request('SitesManager.getSitesIdWithViewAccess', [], $optional);
     }
 
     /**
@@ -190,9 +193,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesIdWithAtLeastViewAccess(array $optional = []): bool|object
+    public function getSitesIdWithAtLeastViewAccess(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSitesIdWithAtLeastViewAccess', [], $optional);
+        return $this->request('SitesManager.getSitesIdWithAtLeastViewAccess', [], $optional);
     }
 
     /**
@@ -200,9 +203,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesIdFromSiteUrl(string $url, array $optional = []): bool|object
+    public function getSitesIdFromSiteUrl(string $url, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSitesIdFromSiteUrl', [
+        return $this->request('SitesManager.getSitesIdFromSiteUrl', [
             'url' => $url,
         ], $optional);
     }
@@ -212,9 +215,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSiteSettings(): object|bool
+    public function getSiteSettings(): mixed
     {
-        return $this->_request('SitesManager.getSiteSettings');
+        return $this->request('SitesManager.getSiteSettings');
     }
 
     /**
@@ -260,9 +263,9 @@ trait SiteManager
         string $type = '',
         string $excludeUnknownUrls = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('SitesManager.addSite', [
+        return $this->request('SitesManager.addSite', [
             'siteName' => $siteName,
             'urls' => $urls,
             'ecommerce' => $ecommerce,
@@ -288,9 +291,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function deleteSite(array $optional = []): bool|object
+    public function deleteSite(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.deleteSite', [], $optional);
+        return $this->request('SitesManager.deleteSite', [], $optional);
     }
 
     /**
@@ -298,9 +301,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function addSiteAliasUrls(array $urls, array $optional = []): bool|object
+    public function addSiteAliasUrls(array $urls, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.addSiteAliasUrls', [
+        return $this->request('SitesManager.addSiteAliasUrls', [
             'urls' => $urls,
         ], $optional);
     }
@@ -310,9 +313,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function setSiteAliasUrls(array $urls, array $optional = []): bool|object
+    public function setSiteAliasUrls(array $urls, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.setSiteAliasUrls', [
+        return $this->request('SitesManager.setSiteAliasUrls', [
             'urls' => $urls,
         ], $optional);
     }
@@ -322,9 +325,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getIpsForRange(string $ipRange, array $optional = []): bool|object
+    public function getIpsForRange(string $ipRange, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getIpsForRange', [
+        return $this->request('SitesManager.getIpsForRange', [
             'ipRange' => $ipRange,
         ], $optional);
     }
@@ -335,9 +338,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function setExcludedIps(array $excludedIps, array $optional = []): bool|object
+    public function setExcludedIps(array $excludedIps, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.setGlobalExcludedIps', [
+        return $this->request('SitesManager.setGlobalExcludedIps', [
             'excludedIps' => $excludedIps,
         ], $optional);
     }
@@ -347,9 +350,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function setGlobalSearchParameters($searchKeywordParameters, $searchCategoryParameters, array $optional = []): bool|object
+    public function setGlobalSearchParameters($searchKeywordParameters, $searchCategoryParameters, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.setGlobalSearchParameters ', [
+        return $this->request('SitesManager.setGlobalSearchParameters ', [
             'searchKeywordParameters' => $searchKeywordParameters,
             'searchCategoryParameters' => $searchCategoryParameters,
         ], $optional);
@@ -360,9 +363,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSearchKeywordParametersGlobal(array $optional = []): bool|object
+    public function getSearchKeywordParametersGlobal(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSearchKeywordParametersGlobal', [], $optional);
+        return $this->request('SitesManager.getSearchKeywordParametersGlobal', [], $optional);
     }
 
     /**
@@ -370,9 +373,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getSearchCategoryParametersGlobal(array $optional = []): bool|object
+    public function getSearchCategoryParametersGlobal(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getSearchCategoryParametersGlobal', [], $optional);
+        return $this->request('SitesManager.getSearchCategoryParametersGlobal', [], $optional);
     }
 
     /**
@@ -380,9 +383,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getExcludedParameters(array $optional = []): bool|object
+    public function getExcludedParameters(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getExcludedQueryParametersGlobal', [], $optional);
+        return $this->request('SitesManager.getExcludedQueryParametersGlobal', [], $optional);
     }
 
     /**
@@ -390,9 +393,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getExcludedUserAgentsGlobal(array $optional = []): bool|object
+    public function getExcludedUserAgentsGlobal(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getExcludedUserAgentsGlobal', [], $optional);
+        return $this->request('SitesManager.getExcludedUserAgentsGlobal', [], $optional);
     }
 
     /**
@@ -400,9 +403,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function setGlobalExcludedUserAgents(array $excludedUserAgents, array $optional = []): bool|object
+    public function setGlobalExcludedUserAgents(array $excludedUserAgents, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.setGlobalExcludedUserAgents', [
+        return $this->request('SitesManager.setGlobalExcludedUserAgents', [
             'excludedUserAgents' => $excludedUserAgents,
         ], $optional);
     }
@@ -412,9 +415,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function isSiteSpecificUserAgentExcludeEnabled(array $optional = []): bool|object
+    public function isSiteSpecificUserAgentExcludeEnabled(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.isSiteSpecificUserAgentExcludeEnabled', [], $optional);
+        return $this->request('SitesManager.isSiteSpecificUserAgentExcludeEnabled', [], $optional);
     }
 
     /**
@@ -422,9 +425,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function setSiteSpecificUserAgentExcludeEnabled(int $enabled, array $optional = []): bool|object
+    public function setSiteSpecificUserAgentExcludeEnabled(int $enabled, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.setSiteSpecificUserAgentExcludeEnabled', [
+        return $this->request('SitesManager.setSiteSpecificUserAgentExcludeEnabled', [
             'enabled' => $enabled,
         ], $optional);
     }
@@ -434,9 +437,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getKeepURLFragmentsGlobal(array $optional = []): bool|object
+    public function getKeepURLFragmentsGlobal(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getKeepURLFragmentsGlobal', [], $optional);
+        return $this->request('SitesManager.getKeepURLFragmentsGlobal', [], $optional);
     }
 
     /**
@@ -444,9 +447,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function setKeepURLFragmentsGlobal(int $enabled, array $optional = []): bool|object
+    public function setKeepURLFragmentsGlobal(int $enabled, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.setKeepURLFragmentsGlobal', [
+        return $this->request('SitesManager.setKeepURLFragmentsGlobal', [
             'enabled' => $enabled,
         ], $optional);
     }
@@ -456,9 +459,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function setExcludedParameters(array $excludedQueryParameters, array $optional = []): bool|object
+    public function setExcludedParameters(array $excludedQueryParameters, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.setGlobalExcludedQueryParameters', [
+        return $this->request('SitesManager.setGlobalExcludedQueryParameters', [
             'excludedQueryParameters' => $excludedQueryParameters,
         ], $optional);
     }
@@ -468,9 +471,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getExcludedIps(array $optional = []): bool|object
+    public function getExcludedIps(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getExcludedIpsGlobal', [], $optional);
+        return $this->request('SitesManager.getExcludedIpsGlobal', [], $optional);
     }
 
     /**
@@ -478,9 +481,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getDefaultCurrency(array $optional = []): bool|object
+    public function getDefaultCurrency(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getDefaultCurrency', [], $optional);
+        return $this->request('SitesManager.getDefaultCurrency', [], $optional);
     }
 
     /**
@@ -488,9 +491,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function setDefaultCurrency(string $defaultCurrency, array $optional = []): bool|object
+    public function setDefaultCurrency(string $defaultCurrency, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.setDefaultCurrency', [
+        return $this->request('SitesManager.setDefaultCurrency', [
             'defaultCurrency' => $defaultCurrency,
         ], $optional);
     }
@@ -500,9 +503,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getDefaultTimezone(array $optional = []): bool|object
+    public function getDefaultTimezone(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getDefaultTimezone', [], $optional);
+        return $this->request('SitesManager.getDefaultTimezone', [], $optional);
     }
 
     /**
@@ -510,9 +513,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function setDefaultTimezone(string $defaultTimezone, array $optional = []): bool|object
+    public function setDefaultTimezone(string $defaultTimezone, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.setDefaultTimezone', [
+        return $this->request('SitesManager.setDefaultTimezone', [
             'defaultTimezone' => $defaultTimezone,
         ], $optional);
     }
@@ -540,9 +543,9 @@ trait SiteManager
         string $type = '',
         string $settings = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('SitesManager.updateSite', [
+        return $this->request('SitesManager.updateSite', [
             'siteName' => $siteName,
             'urls' => $urls,
             'ecommerce' => $ecommerce,
@@ -567,9 +570,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getCurrencyList(array $optional = []): bool|object
+    public function getCurrencyList(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getCurrencyList', [], $optional);
+        return $this->request('SitesManager.getCurrencyList', [], $optional);
     }
 
     /**
@@ -577,9 +580,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getCurrencySymbols(array $optional = []): bool|object
+    public function getCurrencySymbols(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getCurrencySymbols', [], $optional);
+        return $this->request('SitesManager.getCurrencySymbols', [], $optional);
     }
 
     /**
@@ -587,9 +590,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getTimezonesList(array $optional = []): bool|object
+    public function getTimezonesList(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getTimezonesList', [], $optional);
+        return $this->request('SitesManager.getTimezonesList', [], $optional);
     }
 
     /**
@@ -597,9 +600,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getUniqueSiteTimezones(array $optional = []): bool|object
+    public function getUniqueSiteTimezones(array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getUniqueSiteTimezones', [], $optional);
+        return $this->request('SitesManager.getUniqueSiteTimezones', [], $optional);
     }
 
     /**
@@ -607,9 +610,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function renameGroup(string $oldGroupName, string $newGroupName, array $optional = []): bool|object
+    public function renameGroup(string $oldGroupName, string $newGroupName, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.renameGroup', [
+        return $this->request('SitesManager.renameGroup', [
             'oldGroupName' => $oldGroupName,
             'newGroupName' => $newGroupName,
         ], $optional);
@@ -620,9 +623,9 @@ trait SiteManager
      *
      * @throws InvalidRequestException
      */
-    public function getPatternMatchSites(string $pattern, array $optional = []): bool|object
+    public function getPatternMatchSites(string $pattern, array $optional = []): mixed
     {
-        return $this->_request('SitesManager.getPatternMatchSites', [
+        return $this->request('SitesManager.getPatternMatchSites', [
             'pattern' => $pattern,
         ], $optional);
     }

@@ -18,9 +18,9 @@ trait Feedback
      *
      * @throws InvalidRequestException
      */
-    public function sendFeedbackForFeature(string $featureName, string $like, string $message = '', array $optional = []): bool|object
+    public function sendFeedbackForFeature(string $featureName, string $like, string $message = '', array $optional = []): mixed
     {
-        return $this->_request('Feedback.sendFeedbackForFeature', [
+        return $this->request('Feedback.sendFeedbackForFeature', [
             'featureName' => $featureName,
             'like' => $like,
             'message' => $message,

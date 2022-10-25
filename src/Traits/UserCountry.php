@@ -19,9 +19,9 @@ trait UserCountry
      *
      * @throws InvalidRequestException
      */
-    public function getCountry(string $segment = '', array $optional = []): object|bool
+    public function getCountry(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('UserCountry.getCountry', [
+        return $this->request('UserCountry.getCountry', [
             'segment' => $segment,
         ], $optional);
     }
@@ -33,7 +33,7 @@ trait UserCountry
      */
     public function getCountryCodeMapping(): object
     {
-        return $this->_request('UserCountry.getCountryCodeMapping');
+        return $this->request('UserCountry.getCountryCodeMapping');
     }
 
     /**
@@ -41,9 +41,9 @@ trait UserCountry
      *
      * @throws InvalidRequestException
      */
-    public function getContinent(string $segment = '', array $optional = []): object|bool
+    public function getContinent(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('UserCountry.getContinent', [
+        return $this->request('UserCountry.getContinent', [
             'segment' => $segment,
         ], $optional);
     }
@@ -53,9 +53,9 @@ trait UserCountry
      *
      * @throws InvalidRequestException
      */
-    public function getRegion(string $segment = '', array $optional = []): object|bool
+    public function getRegion(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('UserCountry.getRegion', [
+        return $this->request('UserCountry.getRegion', [
             'segment' => $segment,
         ], $optional);
     }
@@ -65,9 +65,9 @@ trait UserCountry
      *
      * @throws InvalidRequestException
      */
-    public function getCity(string $segment = '', array $optional = []): object|bool
+    public function getCity(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('UserCountry.getCity', [
+        return $this->request('UserCountry.getCity', [
             'segment' => $segment,
         ], $optional);
     }
@@ -77,9 +77,9 @@ trait UserCountry
      *
      * @throws InvalidRequestException
      */
-    public function getLocationFromIP(string $ip, string $provider = '', array $optional = []): object|bool
+    public function getLocationFromIP(string $ip, string $provider = '', array $optional = []): mixed
     {
-        return $this->_request('UserCountry.getLocationFromIP', [
+        return $this->request('UserCountry.getLocationFromIP', [
             'ip' => $ip,
             'provider' => $provider,
         ], $optional);
@@ -90,9 +90,9 @@ trait UserCountry
      *
      * @throws InvalidRequestException
      */
-    public function getCountryNumber(string $segment = '', array $optional = []): object|bool
+    public function getCountryNumber(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('UserCountry.getNumberOfDistinctCountries', [
+        return $this->request('UserCountry.getNumberOfDistinctCountries', [
             'segment' => $segment,
         ], $optional);
     }

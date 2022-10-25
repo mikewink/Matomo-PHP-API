@@ -14,14 +14,15 @@ use VisualAppeal\InvalidRequestException;
  */
 trait DevicePlugins
 {
+
     /**
      * Get all plugins.
      *
      * @throws InvalidRequestException
      */
-    public function getUserPlugin(string $segment = '', array $optional = []): object|bool
+    public function getPlugin(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('DevicePlugins.getPlugin', [
+        return $this->request('DevicePlugins.getPlugin', [
             'segment' => $segment,
         ], $optional);
     }

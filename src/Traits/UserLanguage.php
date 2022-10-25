@@ -19,9 +19,9 @@ trait UserLanguage
      *
      * @throws InvalidRequestException
      */
-    public function getUserLanguage(string $segment = '', array $optional = []): object|bool
+    public function getUserLanguage(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('UserLanguage.getLanguage', [
+        return $this->request('UserLanguage.getLanguage', [
             'segment' => $segment,
         ], $optional);
     }
@@ -31,9 +31,9 @@ trait UserLanguage
      *
      * @throws InvalidRequestException
      */
-    public function getUserLanguageCode(string $segment = '', array $optional = []): object|bool
+    public function getUserLanguageCode(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('UserLanguage.getLanguageCode', [
+        return $this->request('UserLanguage.getLanguageCode', [
             'segment' => $segment,
         ], $optional);
     }

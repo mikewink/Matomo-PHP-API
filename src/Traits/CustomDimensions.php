@@ -20,9 +20,9 @@ trait CustomDimensions
      *
      * @throws InvalidRequestException
      */
-    public function getCustomDimension(int $idDimension, array $optional = []): object|bool
+    public function getCustomDimension(int $idDimension, array $optional = []): mixed
     {
-        return $this->_request('CustomDimensions.getCustomDimension', [
+        return $this->request('CustomDimensions.getCustomDimension', [
             'idDimension' => $idDimension,
         ], $optional);
     }
@@ -43,9 +43,9 @@ trait CustomDimensions
      *
      * @throws InvalidRequestException
      */
-    public function configureNewCustomDimension(string $name, string $scope, int $active, array $optional = []): object|bool
+    public function configureNewCustomDimension(string $name, string $scope, int $active, array $optional = []): mixed
     {
-        return $this->_request('CustomDimensions.configureNewCustomDimension', [
+        return $this->request('CustomDimensions.configureNewCustomDimension', [
             'name' => $name,
             'scope' => $scope,
             'active' => $active,
@@ -63,9 +63,9 @@ trait CustomDimensions
      *
      * @throws InvalidRequestException
      */
-    public function configureExistingCustomDimension(int $idDimension, string $name, int $active, array $optional = []): object|bool
+    public function configureExistingCustomDimension(int $idDimension, string $name, int $active, array $optional = []): mixed
     {
-        return $this->_request('CustomDimensions.configureExistingCustomDimension', [
+        return $this->request('CustomDimensions.configureExistingCustomDimension', [
             'idDimension' => $idDimension,
             'name' => $name,
             'active' => $active,
@@ -77,9 +77,9 @@ trait CustomDimensions
      *
      * @throws InvalidRequestException
      */
-    public function getConfiguredCustomDimensions(): object|bool
+    public function getConfiguredCustomDimensions(): mixed
     {
-        return $this->_request('CustomDimensions.getConfiguredCustomDimensions', [
+        return $this->request('CustomDimensions.getConfiguredCustomDimensions', [
         ]);
     }
 
@@ -91,9 +91,9 @@ trait CustomDimensions
      *
      * @throws InvalidRequestException
      */
-    public function getAvailableScopes(): object|bool
+    public function getAvailableScopes(): mixed
     {
-        return $this->_request('CustomDimensions.getAvailableScopes', [
+        return $this->request('CustomDimensions.getAvailableScopes', [
         ]);
     }
 
@@ -103,9 +103,9 @@ trait CustomDimensions
      *
      * @throws InvalidRequestException
      */
-    public function getAvailableExtractionDimensions(): object|bool
+    public function getAvailableExtractionDimensions(): mixed
     {
-        return $this->_request('CustomDimensions.getAvailableExtractionDimensions', [
+        return $this->request('CustomDimensions.getAvailableExtractionDimensions', [
         ]);
     }
 }

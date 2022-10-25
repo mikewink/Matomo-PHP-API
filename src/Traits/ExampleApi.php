@@ -18,9 +18,9 @@ trait ExampleApi
      *
      * @throws InvalidRequestException
      */
-    public function getExampleMatomoVersion(array $optional = []): bool|object
+    public function getExampleMatomoVersion(array $optional = []): mixed
     {
-        return $this->_request('ExampleAPI.getMatomoVersion', [], $optional);
+        return $this->request('ExampleAPI.getMatomoVersion', [], $optional);
     }
 
     /**
@@ -28,9 +28,9 @@ trait ExampleApi
      *
      * @throws InvalidRequestException
      */
-    public function getExampleAnswerToLife(array $optional = []): bool|object
+    public function getExampleAnswerToLife(array $optional = []): mixed
     {
-        return $this->_request('ExampleAPI.getAnswerToLife', [], $optional);
+        return $this->request('ExampleAPI.getAnswerToLife', [], $optional);
     }
 
     /**
@@ -38,9 +38,9 @@ trait ExampleApi
      *
      * @throws InvalidRequestException
      */
-    public function getExampleObject(array $optional = []): bool|object
+    public function getExampleObject(array $optional = []): mixed
     {
-        return $this->_request('ExampleAPI.getObject', [], $optional);
+        return $this->request('ExampleAPI.getObject', [], $optional);
     }
 
     /**
@@ -48,9 +48,9 @@ trait ExampleApi
      *
      * @throws InvalidRequestException
      */
-    public function getExampleSum(int $a = 0, int $b = 0, array $optional = []): bool|object
+    public function getExampleSum(int $a = 0, int $b = 0, array $optional = []): mixed
     {
-        return $this->_request('ExampleAPI.getSum', [
+        return $this->request('ExampleAPI.getSum', [
             'a' => $a,
             'b' => $b,
         ], $optional);
@@ -61,9 +61,9 @@ trait ExampleApi
      *
      * @throws InvalidRequestException
      */
-    public function getExampleNull(array $optional = []): bool|object
+    public function getExampleNull(array $optional = []): mixed
     {
-        return $this->_request('ExampleAPI.getNull', [], $optional);
+        return $this->request('ExampleAPI.getNull', [], $optional);
     }
 
     /**
@@ -71,9 +71,9 @@ trait ExampleApi
      *
      * @throws InvalidRequestException
      */
-    public function getExampleDescriptionArray(array $optional = []): bool|object
+    public function getExampleDescriptionArray(array $optional = []): mixed
     {
-        return $this->_request('ExampleAPI.getDescriptionArray', [], $optional);
+        return $this->request('ExampleAPI.getDescriptionArray', [], $optional);
     }
 
     /**
@@ -81,9 +81,9 @@ trait ExampleApi
      *
      * @throws InvalidRequestException
      */
-    public function getExampleCompetitionDatatable(array $optional = []): bool|object
+    public function getExampleCompetitionDatatable(array $optional = []): mixed
     {
-        return $this->_request('ExampleAPI.getCompetitionDatatable', [], $optional);
+        return $this->request('ExampleAPI.getCompetitionDatatable', [], $optional);
     }
 
     /**
@@ -92,9 +92,9 @@ trait ExampleApi
      *
      * @throws InvalidRequestException
      */
-    public function getExampleMoreInformationAnswerToLife(array $optional = []): bool|object
+    public function getExampleMoreInformationAnswerToLife(array $optional = []): mixed
     {
-        return $this->_request('ExampleAPI.getMoreInformationAnswerToLife', [], $optional);
+        return $this->request('ExampleAPI.getMoreInformationAnswerToLife', [], $optional);
     }
 
     /**
@@ -102,9 +102,9 @@ trait ExampleApi
      *
      * @throws InvalidRequestException
      */
-    public function getExampleMultiArray(array $optional = []): bool|object
+    public function getExampleMultiArray(array $optional = []): mixed
     {
-        return $this->_request('ExampleAPI.getMultiArray', [], $optional);
+        return $this->request('ExampleAPI.getMultiArray', [], $optional);
     }
 
 }

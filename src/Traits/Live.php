@@ -19,9 +19,9 @@ trait Live
      *
      * @throws InvalidRequestException
      */
-    public function getCounters(int $lastMinutes = 60, string $segment = '', array $optional = []): bool|object
+    public function getCounters(int $lastMinutes = 60, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Live.getCounters', [
+        return $this->request('Live.getCounters', [
             'lastMinutes' => $lastMinutes,
             'segment' => $segment,
         ], $optional);
@@ -34,9 +34,9 @@ trait Live
      * @internal param int $maxIdVisit
      * @internal param int $filterLimit
      */
-    public function getLastVisitsDetails(string $segment = '', string $minTimestamp = '', string $doNotFetchActions = '', array $optional = []): bool|object
+    public function getLastVisitsDetails(string $segment = '', string $minTimestamp = '', string $doNotFetchActions = '', array $optional = []): mixed
     {
-        return $this->_request('Live.getLastVisitsDetails', [
+        return $this->request('Live.getLastVisitsDetails', [
             'segment' => $segment,
             'minTimestamp' => $minTimestamp,
             'doNotFetchActions' => $doNotFetchActions,
@@ -48,9 +48,9 @@ trait Live
      *
      * @throws InvalidRequestException
      */
-    public function getVisitorProfile(string $visitorId = '', string $segment = '', array $optional = []): bool|object
+    public function getVisitorProfile(string $visitorId = '', string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Live.getVisitorProfile', [
+        return $this->request('Live.getVisitorProfile', [
             'visitorId' => $visitorId,
             'segment' => $segment,
         ], $optional);
@@ -61,9 +61,9 @@ trait Live
      *
      * @throws InvalidRequestException
      */
-    public function getMostRecentVisitorId(string $segment = '', array $optional = []): bool|object
+    public function getMostRecentVisitorId(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Live.getMostRecentVisitorId', [
+        return $this->request('Live.getMostRecentVisitorId', [
             'segment' => $segment,
         ], $optional);
     }

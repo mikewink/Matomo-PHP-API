@@ -18,9 +18,9 @@ trait SegmentEditor
      *
      * @throws InvalidRequestException
      */
-    public function isUserCanAddNewSegment(array $optional = []): bool|object
+    public function isUserCanAddNewSegment(array $optional = []): mixed
     {
-        return $this->_request('SegmentEditor.isUserCanAddNewSegment', [], $optional);
+        return $this->request('SegmentEditor.isUserCanAddNewSegment', [], $optional);
     }
 
     /**
@@ -28,9 +28,9 @@ trait SegmentEditor
      *
      * @throws InvalidRequestException
      */
-    public function deleteSegment(int $idSegment, array $optional = []): bool|object
+    public function deleteSegment(int $idSegment, array $optional = []): mixed
     {
-        return $this->_request('SegmentEditor.delete', [
+        return $this->request('SegmentEditor.delete', [
             'idSegment' => $idSegment,
         ], $optional);
     }
@@ -47,9 +47,9 @@ trait SegmentEditor
         string $autoArchive = '',
         string $enableAllUsers = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('SegmentEditor.update', [
+        return $this->request('SegmentEditor.update', [
             'idSegment' => $idSegment,
             'name' => $name,
             'definition' => $definition,
@@ -63,9 +63,9 @@ trait SegmentEditor
      *
      * @throws InvalidRequestException
      */
-    public function addSegment(string $name, string $definition, string $autoArchive = '', string $enableAllUsers = '', array $optional = []): bool|object
+    public function addSegment(string $name, string $definition, string $autoArchive = '', string $enableAllUsers = '', array $optional = []): mixed
     {
-        return $this->_request('SegmentEditor.add', [
+        return $this->request('SegmentEditor.add', [
             'name' => $name,
             'definition' => $definition,
             'autoArchive' => $autoArchive,
@@ -78,9 +78,9 @@ trait SegmentEditor
      *
      * @throws InvalidRequestException
      */
-    public function getSegment(int $idSegment, array $optional = []): bool|object
+    public function getSegment(int $idSegment, array $optional = []): mixed
     {
-        return $this->_request('SegmentEditor.get', [
+        return $this->request('SegmentEditor.get', [
             'idSegment' => $idSegment,
         ], $optional);
     }
@@ -90,9 +90,9 @@ trait SegmentEditor
      *
      * @throws InvalidRequestException
      */
-    public function getAllSegments(array $optional = []): bool|object
+    public function getAllSegments(array $optional = []): mixed
     {
-        return $this->_request('SegmentEditor.getAll', [], $optional);
+        return $this->request('SegmentEditor.getAll', [], $optional);
     }
 
 }

@@ -20,9 +20,9 @@ trait Events
      *
      * @throws InvalidRequestException
      */
-    public function getEventCategory(string $segment = '', string $secondaryDimension = '', array $optional = []): bool|object
+    public function getEventCategory(string $segment = '', string $secondaryDimension = '', array $optional = []): mixed
     {
-        return $this->_request('Events.getCategory', [
+        return $this->request('Events.getCategory', [
             'segment' => $segment,
             'secondaryDimension' => $secondaryDimension,
         ], $optional);
@@ -35,9 +35,9 @@ trait Events
      *
      * @throws InvalidRequestException
      */
-    public function getEventAction(string $segment = '', string $secondaryDimension = '', array $optional = []): bool|object
+    public function getEventAction(string $segment = '', string $secondaryDimension = '', array $optional = []): mixed
     {
-        return $this->_request('Events.getAction', [
+        return $this->request('Events.getAction', [
             'segment' => $segment,
             'secondaryDimension' => $secondaryDimension,
         ], $optional);
@@ -50,9 +50,9 @@ trait Events
      *
      * @throws InvalidRequestException
      */
-    public function getEventName(string $segment = '', string $secondaryDimension = '', array $optional = []): bool|object
+    public function getEventName(string $segment = '', string $secondaryDimension = '', array $optional = []): mixed
     {
-        return $this->_request('Events.getName', [
+        return $this->request('Events.getName', [
             'segment' => $segment,
             'secondaryDimension' => $secondaryDimension,
         ], $optional);
@@ -63,9 +63,9 @@ trait Events
      *
      * @throws InvalidRequestException
      */
-    public function getActionFromCategoryId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getActionFromCategoryId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Events.getActionFromCategoryId', [
+        return $this->request('Events.getActionFromCategoryId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);
@@ -76,9 +76,9 @@ trait Events
      *
      * @throws InvalidRequestException
      */
-    public function getNameFromCategoryId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getNameFromCategoryId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Events.getNameFromCategoryId', [
+        return $this->request('Events.getNameFromCategoryId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);
@@ -89,9 +89,9 @@ trait Events
      *
      * @throws InvalidRequestException
      */
-    public function getCategoryFromActionId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getCategoryFromActionId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Events.getCategoryFromActionId', [
+        return $this->request('Events.getCategoryFromActionId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);
@@ -102,9 +102,9 @@ trait Events
      *
      * @throws InvalidRequestException
      */
-    public function getNameFromActionId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getNameFromActionId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Events.getNameFromActionId', [
+        return $this->request('Events.getNameFromActionId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);
@@ -115,9 +115,9 @@ trait Events
      *
      * @throws InvalidRequestException
      */
-    public function getActionFromNameId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getActionFromNameId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Events.getActionFromNameId', [
+        return $this->request('Events.getActionFromNameId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);
@@ -128,9 +128,9 @@ trait Events
      *
      * @throws InvalidRequestException
      */
-    public function getCategoryFromNameId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getCategoryFromNameId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Events.getCategoryFromNameId', [
+        return $this->request('Events.getCategoryFromNameId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);

@@ -21,9 +21,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function setUserPreference(string $userLogin, string $preferenceName, string $preferenceValue, array $optional = []): object|bool
+    public function setUserPreference(string $userLogin, string $preferenceName, string $preferenceValue, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.setUserPreference', [
+        return $this->request('UsersManager.setUserPreference', [
             'userLogin' => $userLogin,
             'preferenceName' => $preferenceName,
             'preferenceValue' => $preferenceValue,
@@ -37,9 +37,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getUserPreference(string $userLogin, string $preferenceName, array $optional = []): object|bool
+    public function getUserPreference(string $userLogin, string $preferenceName, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getUserPreference', [
+        return $this->request('UsersManager.getUserPreference', [
             'userLogin' => $userLogin,
             'preferenceName' => $preferenceName,
         ], $optional);
@@ -52,9 +52,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getUsers(string $userLogins = '', array $optional = []): object|bool
+    public function getUsers(string $userLogins = '', array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getUsers', [
+        return $this->request('UsersManager.getUsers', [
             'userLogins' => $userLogins,
         ], $optional);
     }
@@ -64,9 +64,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getUsersLogin(array $optional = []): object|bool
+    public function getUsersLogin(array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getUsersLogin', [], $optional);
+        return $this->request('UsersManager.getUsersLogin', [], $optional);
     }
 
     /**
@@ -74,9 +74,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getUsersSitesFromAccess(string $access, array $optional = []): object|bool
+    public function getUsersSitesFromAccess(string $access, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getUsersSitesFromAccess', [
+        return $this->request('UsersManager.getUsersSitesFromAccess', [
             'access' => $access,
         ], $optional);
     }
@@ -86,9 +86,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getUsersAccess(array $optional = []): object|bool
+    public function getUsersAccess(array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getUsersAccessFromSite', [], $optional);
+        return $this->request('UsersManager.getUsersAccessFromSite', [], $optional);
     }
 
     /**
@@ -96,9 +96,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getUsersWithSiteAccess(string $access, array $optional = []): object|bool
+    public function getUsersWithSiteAccess(string $access, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getUsersWithSiteAccess', [
+        return $this->request('UsersManager.getUsersWithSiteAccess', [
             'access' => $access,
         ], $optional);
     }
@@ -110,9 +110,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getSitesAccessFromUser(string $userLogin, array $optional = []): object|bool
+    public function getSitesAccessFromUser(string $userLogin, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getSitesAccessFromUser', [
+        return $this->request('UsersManager.getSitesAccessFromUser', [
             'userLogin' => $userLogin,
         ], $optional);
     }
@@ -124,9 +124,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getUser(string $userLogin, array $optional = []): object|bool
+    public function getUser(string $userLogin, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getUser', [
+        return $this->request('UsersManager.getUser', [
             'userLogin' => $userLogin,
         ], $optional);
     }
@@ -136,9 +136,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getUserByEmail(string $userEmail, array $optional = []): object|bool
+    public function getUserByEmail(string $userEmail, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getUserByEmail', [
+        return $this->request('UsersManager.getUserByEmail', [
             'userEmail' => $userEmail,
         ], $optional);
     }
@@ -151,9 +151,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function addUser(string $userLogin, string $password, string $email, string $alias = '', array $optional = []): object|bool
+    public function addUser(string $userLogin, string $password, string $email, string $alias = '', array $optional = []): mixed
     {
-        return $this->_request('UsersManager.addUser', [
+        return $this->request('UsersManager.addUser', [
             'userLogin' => $userLogin,
             'password' => $password,
             'email' => $email,
@@ -168,9 +168,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function setSuperUserAccess(string $userLogin, int $hasSuperUserAccess, array $optional = []): object|bool
+    public function setSuperUserAccess(string $userLogin, int $hasSuperUserAccess, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.setSuperUserAccess', [
+        return $this->request('UsersManager.setSuperUserAccess', [
             'userLogin' => $userLogin,
             'hasSuperUserAccess' => $hasSuperUserAccess,
         ], $optional);
@@ -181,9 +181,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function hasSuperUserAccess(array $optional = []): object|bool
+    public function hasSuperUserAccess(array $optional = []): mixed
     {
-        return $this->_request('UsersManager.hasSuperUserAccess', [], $optional);
+        return $this->request('UsersManager.hasSuperUserAccess', [], $optional);
     }
 
     /**
@@ -191,9 +191,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getUsersHavingSuperUserAccess(array $optional = []): object|bool
+    public function getUsersHavingSuperUserAccess(array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getUsersHavingSuperUserAccess', [], $optional);
+        return $this->request('UsersManager.getUsersHavingSuperUserAccess', [], $optional);
     }
 
     /**
@@ -204,9 +204,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function updateUser(string $userLogin, string $password = '', string $email = '', string $alias = '', array $optional = []): object|bool
+    public function updateUser(string $userLogin, string $password = '', string $email = '', string $alias = '', array $optional = []): mixed
     {
-        return $this->_request('UsersManager.updateUser', [
+        return $this->request('UsersManager.updateUser', [
             'userLogin' => $userLogin,
             'password' => $password,
             'email' => $email,
@@ -221,9 +221,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function deleteUser(string $userLogin, array $optional = []): object|bool
+    public function deleteUser(string $userLogin, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.deleteUser', [
+        return $this->request('UsersManager.deleteUser', [
             'userLogin' => $userLogin,
         ], $optional);
     }
@@ -234,9 +234,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function userExists(string $userLogin, array $optional = []): object|bool
+    public function userExists(string $userLogin, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.userExists', [
+        return $this->request('UsersManager.userExists', [
             'userLogin' => $userLogin,
         ], $optional);
     }
@@ -246,9 +246,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function userEmailExists(string $userEmail, array $optional = []): object|bool
+    public function userEmailExists(string $userEmail, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.userEmailExists', [
+        return $this->request('UsersManager.userEmailExists', [
             'userEmail' => $userEmail,
         ], $optional);
     }
@@ -260,9 +260,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function setUserAccess(string $userLogin, string $access, array $idSites, array $optional = []): object|bool
+    public function setUserAccess(string $userLogin, string $access, array $idSites, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.setUserAccess', [
+        return $this->request('UsersManager.setUserAccess', [
             'userLogin' => $userLogin,
             'access' => $access,
             'idSites' => $idSites,
@@ -277,9 +277,9 @@ trait UserManager
      *
      * @throws InvalidRequestException
      */
-    public function getTokenAuth(string $userLogin, string $md5Password, array $optional = []): object|bool
+    public function getTokenAuth(string $userLogin, string $md5Password, array $optional = []): mixed
     {
-        return $this->_request('UsersManager.getTokenAuth', [
+        return $this->request('UsersManager.getTokenAuth', [
             'userLogin' => $userLogin,
             'md5Password' => md5($md5Password),
         ], $optional);

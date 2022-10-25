@@ -19,9 +19,9 @@ trait LanguagesManager
      *
      * @throws InvalidRequestException
      */
-    public function getLanguageAvailable(string $languageCode, array $optional = []): bool|object
+    public function getLanguageAvailable(string $languageCode, array $optional = []): mixed
     {
-        return $this->_request('LanguagesManager.isLanguageAvailable', [
+        return $this->request('LanguagesManager.isLanguageAvailable', [
             'languageCode' => $languageCode,
         ], $optional);
     }
@@ -31,9 +31,9 @@ trait LanguagesManager
      *
      * @throws InvalidRequestException
      */
-    public function getAvailableLanguages(array $optional = []): bool|object
+    public function getAvailableLanguages(array $optional = []): mixed
     {
-        return $this->_request('LanguagesManager.getAvailableLanguages', [], $optional);
+        return $this->request('LanguagesManager.getAvailableLanguages', [], $optional);
     }
 
     /**
@@ -41,9 +41,9 @@ trait LanguagesManager
      *
      * @throws InvalidRequestException
      */
-    public function getAvailableLanguagesInfo(array $optional = []): bool|object
+    public function getAvailableLanguagesInfo(array $optional = []): mixed
     {
-        return $this->_request('LanguagesManager.getAvailableLanguagesInfo', [], $optional);
+        return $this->request('LanguagesManager.getAvailableLanguagesInfo', [], $optional);
     }
 
     /**
@@ -51,9 +51,9 @@ trait LanguagesManager
      *
      * @throws InvalidRequestException
      */
-    public function getAvailableLanguageNames(array $optional = []): bool|object
+    public function getAvailableLanguageNames(array $optional = []): mixed
     {
-        return $this->_request('LanguagesManager.getAvailableLanguageNames', [], $optional);
+        return $this->request('LanguagesManager.getAvailableLanguageNames', [], $optional);
     }
 
     /**
@@ -61,9 +61,9 @@ trait LanguagesManager
      *
      * @throws InvalidRequestException
      */
-    public function getTranslations(string $languageCode, array $optional = []): bool|object
+    public function getTranslations(string $languageCode, array $optional = []): mixed
     {
-        return $this->_request('LanguagesManager.getTranslationsForLanguage', [
+        return $this->request('LanguagesManager.getTranslationsForLanguage', [
             'languageCode' => $languageCode,
         ], $optional);
     }
@@ -73,9 +73,9 @@ trait LanguagesManager
      *
      * @throws InvalidRequestException
      */
-    public function getLanguageForUser(string $login, array $optional = []): bool|object
+    public function getLanguageForUser(string $login, array $optional = []): mixed
     {
-        return $this->_request('LanguagesManager.getLanguageForUser', [
+        return $this->request('LanguagesManager.getLanguageForUser', [
             'login' => $login,
         ], $optional);
     }
@@ -85,9 +85,9 @@ trait LanguagesManager
      *
      * @throws InvalidRequestException
      */
-    public function setLanguageForUser(string $login, string $languageCode, array $optional = []): bool|object
+    public function setLanguageForUser(string $login, string $languageCode, array $optional = []): mixed
     {
-        return $this->_request('LanguagesManager.setLanguageForUser', [
+        return $this->request('LanguagesManager.setLanguageForUser', [
             'login' => $login,
             'languageCode' => $languageCode,
         ], $optional);

@@ -20,9 +20,9 @@ trait Provider
      *
      * @throws InvalidRequestException
      */
-    public function getProvider(string $segment = '', array $optional = []): bool|object
+    public function getProvider(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Provider.getProvider', [
+        return $this->request('Provider.getProvider', [
             'segment' => $segment,
         ], $optional);
     }

@@ -19,9 +19,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getReferrerType(string $segment = '', string $typeReferrer = '', array $optional = []): bool|object
+    public function getReferrerType(string $segment = '', string $typeReferrer = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getReferrerType', [
+        return $this->request('Referrers.getReferrerType', [
             'segment' => $segment,
             'typeReferrer' => $typeReferrer,
         ], $optional);
@@ -32,9 +32,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getAllReferrers(string $segment = '', array $optional = []): bool|object
+    public function getAllReferrers(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getAll', [
+        return $this->request('Referrers.getAll', [
             'segment' => $segment,
         ], $optional);
     }
@@ -44,9 +44,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getKeywords(string $segment = '', array $optional = []): bool|object
+    public function getKeywords(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getKeywords', [
+        return $this->request('Referrers.getKeywords', [
             'segment' => $segment,
         ], $optional);
     }
@@ -56,9 +56,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getKeywordsForPageUrl(string $url, array $optional = []): bool|object
+    public function getKeywordsForPageUrl(string $url, array $optional = []): mixed
     {
-        return $this->_request('Referrers.getKeywordsForPageUrl', [
+        return $this->request('Referrers.getKeywordsForPageUrl', [
             'url' => $url,
         ], $optional);
     }
@@ -68,9 +68,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getKeywordsForPageTitle(string $title, array $optional = []): bool|object
+    public function getKeywordsForPageTitle(string $title, array $optional = []): mixed
     {
-        return $this->_request('Referrers.getKeywordsForPageTitle', [
+        return $this->request('Referrers.getKeywordsForPageTitle', [
             'title' => $title,
         ], $optional);
     }
@@ -80,9 +80,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getSearchEnginesFromKeywordId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getSearchEnginesFromKeywordId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getSearchEnginesFromKeywordId', [
+        return $this->request('Referrers.getSearchEnginesFromKeywordId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);
@@ -93,9 +93,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getSearchEngines(string $segment = '', array $optional = []): bool|object
+    public function getSearchEngines(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getSearchEngines', [
+        return $this->request('Referrers.getSearchEngines', [
             'segment' => $segment,
         ], $optional);
     }
@@ -105,9 +105,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getKeywordsFromSearchEngineId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getKeywordsFromSearchEngineId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getKeywordsFromSearchEngineId', [
+        return $this->request('Referrers.getKeywordsFromSearchEngineId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);
@@ -118,9 +118,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getCampaigns(string $segment = '', array $optional = []): bool|object
+    public function getCampaigns(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getCampaigns', [
+        return $this->request('Referrers.getCampaigns', [
             'segment' => $segment,
         ], $optional);
     }
@@ -130,9 +130,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getKeywordsFromCampaignId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getKeywordsFromCampaignId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getKeywordsFromCampaignId', [
+        return $this->request('Referrers.getKeywordsFromCampaignId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);
@@ -143,9 +143,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getAdvancedCampaignReportingName(string $segment = '', array $optional = []): bool|object
+    public function getAdvancedCampaignReportingName(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('AdvancedCampaignReporting.getName', [
+        return $this->request('AdvancedCampaignReporting.getName', [
             'segment' => $segment,
         ], $optional);
     }
@@ -155,9 +155,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getAdvancedCampaignReportingKeywordContentFromNameId(string $segment = '', array $optional = []): bool|object
+    public function getAdvancedCampaignReportingKeywordContentFromNameId(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('AdvancedCampaignReporting.getKeywordContentFromNameId', [
+        return $this->request('AdvancedCampaignReporting.getKeywordContentFromNameId', [
             'segment' => $segment
         ], $optional);
     }
@@ -167,9 +167,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getAdvancedCampaignReportingKeyword(string $segment = '', array $optional = []): bool|object
+    public function getAdvancedCampaignReportingKeyword(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('AdvancedCampaignReporting.getKeyword', [
+        return $this->request('AdvancedCampaignReporting.getKeyword', [
             'segment' => $segment
         ], $optional);
     }
@@ -179,9 +179,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getAdvancedCampaignReportingSource(string $segment = '', array $optional = []): bool|object
+    public function getAdvancedCampaignReportingSource(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('AdvancedCampaignReporting.getSource', [
+        return $this->request('AdvancedCampaignReporting.getSource', [
             'segment' => $segment
         ], $optional);
     }
@@ -191,9 +191,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getAdvancedCampaignReportingMedium(string $segment = '', array $optional = []): bool|object
+    public function getAdvancedCampaignReportingMedium(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('AdvancedCampaignReporting.getMedium', [
+        return $this->request('AdvancedCampaignReporting.getMedium', [
             'segment' => $segment
         ], $optional);
     }
@@ -203,9 +203,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getAdvancedCampaignReportingContent(string $segment = '', array $optional = []): bool|object
+    public function getAdvancedCampaignReportingContent(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('AdvancedCampaignReporting.getContent', [
+        return $this->request('AdvancedCampaignReporting.getContent', [
             'segment' => $segment
         ], $optional);
     }
@@ -215,9 +215,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getAdvancedCampaignReportingSourceMedium(string $segment = '', array $optional = []): bool|object
+    public function getAdvancedCampaignReportingSourceMedium(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('AdvancedCampaignReporting.getSourceMedium', [
+        return $this->request('AdvancedCampaignReporting.getSourceMedium', [
             'segment' => $segment
         ], $optional);
     }
@@ -227,9 +227,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getAdvancedCampaignReportingNameFromSourceMediumId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getAdvancedCampaignReportingNameFromSourceMediumId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('AdvancedCampaignReporting.getNameFromSourceMediumId', [
+        return $this->request('AdvancedCampaignReporting.getNameFromSourceMediumId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment
         ], $optional);
@@ -240,9 +240,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getWebsites(string $segment = '', array $optional = []): bool|object
+    public function getWebsites(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getWebsites', [
+        return $this->request('Referrers.getWebsites', [
             'segment' => $segment,
         ], $optional);
     }
@@ -252,9 +252,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getUrlsFromWebsiteId(int $idSubtable, string $segment = '', array $optional = []): bool|object
+    public function getUrlsFromWebsiteId(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getUrlsFromWebsiteId', [
+        return $this->request('Referrers.getUrlsFromWebsiteId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);
@@ -265,9 +265,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getSocials(string $segment = '', array $optional = []): bool|object
+    public function getSocials(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getSocials', [
+        return $this->request('Referrers.getSocials', [
             'segment' => $segment,
         ], $optional);
     }
@@ -277,9 +277,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getUrlsForSocial(string $segment = '', array $optional = []): bool|object
+    public function getUrlsForSocial(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getUrlsForSocial', [
+        return $this->request('Referrers.getUrlsForSocial', [
             'segment' => $segment,
         ], $optional);
     }
@@ -289,9 +289,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getNumberOfSearchEngines(string $segment = '', array $optional = []): bool|object
+    public function getNumberOfSearchEngines(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getNumberOfDistinctSearchEngines', [
+        return $this->request('Referrers.getNumberOfDistinctSearchEngines', [
             'segment' => $segment,
         ], $optional);
     }
@@ -301,9 +301,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getNumberOfKeywords(string $segment = '', array $optional = []): bool|object
+    public function getNumberOfKeywords(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getNumberOfDistinctKeywords', [
+        return $this->request('Referrers.getNumberOfDistinctKeywords', [
             'segment' => $segment,
         ], $optional);
     }
@@ -313,9 +313,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getNumberOfCampaigns(string $segment = '', array $optional = []): bool|object
+    public function getNumberOfCampaigns(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getNumberOfDistinctCampaigns', [
+        return $this->request('Referrers.getNumberOfDistinctCampaigns', [
             'segment' => $segment,
         ], $optional);
     }
@@ -325,9 +325,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getNumberOfWebsites(string $segment = '', array $optional = []): bool|object
+    public function getNumberOfWebsites(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getNumberOfDistinctWebsites', [
+        return $this->request('Referrers.getNumberOfDistinctWebsites', [
             'segment' => $segment,
         ], $optional);
     }
@@ -337,9 +337,9 @@ trait Referrers
      *
      * @throws InvalidRequestException
      */
-    public function getNumberOfWebsitesUrls(string $segment = '', array $optional = []): bool|object
+    public function getNumberOfWebsitesUrls(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Referrers.getNumberOfDistinctWebsitesUrls', [
+        return $this->request('Referrers.getNumberOfDistinctWebsitesUrls', [
             'segment' => $segment,
         ], $optional);
     }

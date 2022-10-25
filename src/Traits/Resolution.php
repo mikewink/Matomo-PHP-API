@@ -18,9 +18,9 @@ trait Resolution
      *
      * @throws InvalidRequestException
      */
-    public function getResolution(string $segment = '', array $optional = []): object|bool
+    public function getResolution(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Resolution.getResolution', [
+        return $this->request('Resolution.getResolution', [
             'segment' => $segment,
         ], $optional);
     }
@@ -30,9 +30,9 @@ trait Resolution
      *
      * @throws InvalidRequestException
      */
-    public function getConfiguration(string $segment = '', array $optional = []): object|bool
+    public function getConfiguration(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Resolution.getConfiguration', [
+        return $this->request('Resolution.getConfiguration', [
             'segment' => $segment,
         ], $optional);
     }

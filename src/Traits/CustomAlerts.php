@@ -16,9 +16,9 @@ trait CustomAlerts
      *
      * @throws InvalidRequestException
      */
-    public function getAlert(int $idAlert, array $optional = []): bool|object
+    public function getAlert(int $idAlert, array $optional = []): mixed
     {
-        return $this->_request('CustomAlerts.getAlert', [
+        return $this->request('CustomAlerts.getAlert', [
             'idAlert' => $idAlert,
         ], $optional);
     }
@@ -28,9 +28,9 @@ trait CustomAlerts
      *
      * @throws InvalidRequestException
      */
-    public function getValuesForAlertInPast(int $idAlert, string $subPeriodN, array $optional = []): bool|object
+    public function getValuesForAlertInPast(int $idAlert, string $subPeriodN, array $optional = []): mixed
     {
-        return $this->_request('CustomAlerts.getValuesForAlertInPast', [
+        return $this->request('CustomAlerts.getValuesForAlertInPast', [
             'idAlert' => $idAlert,
             'subPeriodN' => $subPeriodN,
         ], $optional);
@@ -43,9 +43,9 @@ trait CustomAlerts
      *
      * @throws InvalidRequestException
      */
-    public function getAlerts(string $idSites, string $ifSuperUserReturnAllAlerts = '', array $optional = []): bool|object
+    public function getAlerts(string $idSites, string $ifSuperUserReturnAllAlerts = '', array $optional = []): mixed
     {
-        return $this->_request('CustomAlerts.getAlerts', [
+        return $this->request('CustomAlerts.getAlerts', [
             'idSites' => $idSites,
             'ifSuperUserReturnAllAlerts' => $ifSuperUserReturnAllAlerts,
         ], $optional);
@@ -72,9 +72,9 @@ trait CustomAlerts
         string $reportCondition = '',
         string $reportValue = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('CustomAlerts.addAlert', [
+        return $this->request('CustomAlerts.addAlert', [
             'name' => $name,
             'idSites' => $idSites,
             'emailMe' => $emailMe,
@@ -112,8 +112,8 @@ trait CustomAlerts
         string $reportCondition = '',
         string $reportValue = '',
         array $optional = []
-    ): object|bool {
-        return $this->_request('CustomAlerts.editAlert', [
+    ): mixed {
+        return $this->request('CustomAlerts.editAlert', [
             'idAlert' => $idAlert,
             'name' => $name,
             'idSites' => $idSites,
@@ -135,9 +135,9 @@ trait CustomAlerts
      *
      * @throws InvalidRequestException
      */
-    public function deleteAlert(int $idAlert, array $optional = []): object|bool
+    public function deleteAlert(int $idAlert, array $optional = []): mixed
     {
-        return $this->_request('CustomAlerts.deleteAlert', [
+        return $this->request('CustomAlerts.deleteAlert', [
             'idAlert' => $idAlert,
         ], $optional);
     }
@@ -147,9 +147,9 @@ trait CustomAlerts
      *
      * @throws InvalidRequestException
      */
-    public function getTriggeredAlerts(array $idSites, array $optional = []): object|bool
+    public function getTriggeredAlerts(array $idSites, array $optional = []): mixed
     {
-        return $this->_request('CustomAlerts.getTriggeredAlerts', [
+        return $this->request('CustomAlerts.getTriggeredAlerts', [
             'idSites' => $idSites,
         ], $optional);
     }

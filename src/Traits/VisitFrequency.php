@@ -19,9 +19,9 @@ trait VisitFrequency
      *
      * @throws InvalidRequestException
      */
-    public function getVisitFrequency(string $segment = '', string $columns = '', array $optional = []): object|bool
+    public function getVisitFrequency(string $segment = '', string $columns = '', array $optional = []): mixed
     {
-        return $this->_request('VisitFrequency.get', [
+        return $this->request('VisitFrequency.get', [
             'segment' => $segment,
             'columns' => $columns,
         ], $optional);

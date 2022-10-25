@@ -18,9 +18,9 @@ trait Insights
      *
      * @throws InvalidRequestException
      */
-    public function canGenerateInsights(array $optional = []): bool|object
+    public function canGenerateInsights(array $optional = []): mixed
     {
-        return $this->_request('Insights.canGenerateInsights', [], $optional);
+        return $this->request('Insights.canGenerateInsights', [], $optional);
     }
 
     /**
@@ -28,9 +28,9 @@ trait Insights
      *
      * @throws InvalidRequestException
      */
-    public function getInsightsOverview(string $segment, array $optional = []): bool|object
+    public function getInsightsOverview(string $segment, array $optional = []): mixed
     {
-        return $this->_request('Insights.getInsightsOverview', [
+        return $this->request('Insights.getInsightsOverview', [
             'segment' => $segment,
         ], $optional);
     }
@@ -40,9 +40,9 @@ trait Insights
      *
      * @throws InvalidRequestException
      */
-    public function getMoversAndShakersOverview(string $segment, array $optional = []): bool|object
+    public function getMoversAndShakersOverview(string $segment, array $optional = []): mixed
     {
-        return $this->_request('Insights.getMoversAndShakersOverview', [
+        return $this->request('Insights.getMoversAndShakersOverview', [
             'segment' => $segment,
         ], $optional);
     }
@@ -59,9 +59,9 @@ trait Insights
         int $limitIncreaser = 4,
         int $limitDecreaser = 4,
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('Insights.getMoversAndShakers', [
+        return $this->request('Insights.getMoversAndShakers', [
             'reportUniqueId' => $reportUniqueId,
             'segment' => $segment,
             'comparedToXPeriods' => $comparedToXPeriods,
@@ -89,9 +89,9 @@ trait Insights
         int $comparedToXPeriods = 1,
         string $orderBy = 'absolute',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('Insights.getInsights', [
+        return $this->request('Insights.getInsights', [
             'reportUniqueId' => $reportUniqueId,
             'segment' => $segment,
             'limitIncreaser' => $limitIncreaser,

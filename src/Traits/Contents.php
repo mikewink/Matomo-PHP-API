@@ -18,9 +18,9 @@ trait Contents
      *
      * @throws InvalidRequestException
      */
-    public function getContentNames(string $segment = '', array $optional = []): bool|object
+    public function getContentNames(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Contents.getContentNames', [
+        return $this->request('Contents.getContentNames', [
             'segment' => $segment,
         ], $optional);
     }
@@ -30,9 +30,9 @@ trait Contents
      *
      * @throws InvalidRequestException
      */
-    public function getContentPieces(string $segment = '', array $optional = []): bool|object
+    public function getContentPieces(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Contents.getContentPieces', [
+        return $this->request('Contents.getContentPieces', [
             'segment' => $segment,
         ], $optional);
     }

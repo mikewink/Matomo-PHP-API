@@ -19,9 +19,9 @@ trait CustomVariables
      *
      * @throws \VisualAppeal\InvalidRequestException
      */
-    public function getCustomVariables(string $segment = '', array $optional = []): object|bool|array
+    public function getCustomVariables(string $segment = '', array $optional = []): mixed|array
     {
-        return $this->_request('CustomVariables.getCustomVariables', [
+        return $this->request('CustomVariables.getCustomVariables', [
             'segment' => $segment,
         ], $optional);
     }
@@ -31,9 +31,9 @@ trait CustomVariables
      *
      * @throws InvalidRequestException
      */
-    public function getCustomVariable(int $idSubtable, string $segment = '', array $optional = []): object|bool
+    public function getCustomVariable(int $idSubtable, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('CustomVariables.getCustomVariablesValuesFromNameId', [
+        return $this->request('CustomVariables.getCustomVariablesValuesFromNameId', [
             'idSubtable' => $idSubtable,
             'segment' => $segment,
         ], $optional);

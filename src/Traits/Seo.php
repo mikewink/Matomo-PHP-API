@@ -19,9 +19,9 @@ trait Seo
      *
      * @throws InvalidRequestException
      */
-    public function getSeoRank(string $url, array $optional = []): bool|object
+    public function getSeoRank(string $url, array $optional = []): mixed
     {
-        return $this->_request('SEO.getRank', [
+        return $this->request('SEO.getRank', [
             'url' => $url,
         ], $optional);
     }

@@ -20,9 +20,9 @@ trait VisitTime
      *
      * @throws InvalidRequestException
      */
-    public function getVisitLocalTime(string $segment = '', array $optional = []): object|bool
+    public function getVisitLocalTime(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitTime.getVisitInformationPerLocalTime', [
+        return $this->request('VisitTime.getVisitInformationPerLocalTime', [
             'segment' => $segment,
         ], $optional);
     }
@@ -34,9 +34,9 @@ trait VisitTime
      *
      * @throws InvalidRequestException
      */
-    public function getVisitServerTime(string $segment = '', string $hideFutureHoursWhenToday = '', array $optional = []): object|bool
+    public function getVisitServerTime(string $segment = '', string $hideFutureHoursWhenToday = '', array $optional = []): mixed
     {
-        return $this->_request('VisitTime.getVisitInformationPerServerTime', [
+        return $this->request('VisitTime.getVisitInformationPerServerTime', [
             'segment' => $segment,
             'hideFutureHoursWhenToday' => $hideFutureHoursWhenToday,
         ], $optional);
@@ -48,9 +48,9 @@ trait VisitTime
      *
      * @throws InvalidRequestException
      */
-    public function getByDayOfWeek(string $segment = '', array $optional = []): object|bool
+    public function getByDayOfWeek(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitTime.getByDayOfWeek', [
+        return $this->request('VisitTime.getByDayOfWeek', [
             'segment' => $segment,
         ], $optional);
     }

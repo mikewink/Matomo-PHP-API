@@ -19,9 +19,9 @@ trait MultiSite
      *
      * @throws InvalidRequestException
      */
-    public function getMultiSites(string $segment = '', string $enhanced = '', array $optional = []): bool|object
+    public function getMultiSites(string $segment = '', string $enhanced = '', array $optional = []): mixed
     {
-        return $this->_request('MultiSites.getAll', [
+        return $this->request('MultiSites.getAll', [
             'segment' => $segment,
             'enhanced' => $enhanced,
         ], $optional);
@@ -32,9 +32,9 @@ trait MultiSite
      *
      * @throws InvalidRequestException
      */
-    public function getOne(string $segment = '', string $enhanced = '', array $optional = []): bool|object
+    public function getOne(string $segment = '', string $enhanced = '', array $optional = []): mixed
     {
-        return $this->_request('MultiSites.getOne', [
+        return $this->request('MultiSites.getOne', [
             'segment' => $segment,
             'enhanced' => $enhanced,
         ], $optional);

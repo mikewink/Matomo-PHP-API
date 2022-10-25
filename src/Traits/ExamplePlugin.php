@@ -18,9 +18,9 @@ trait ExamplePlugin
      *
      * @throws InvalidRequestException
      */
-    public function getExamplePluginAnswerToLife(int $truth = 1, array $optional = []): bool|object
+    public function getExamplePluginAnswerToLife(int $truth = 1, array $optional = []): mixed
     {
-        return $this->_request('ExamplePlugin.getAnswerToLife', [
+        return $this->request('ExamplePlugin.getAnswerToLife', [
             'truth' => $truth,
         ], $optional);
     }
@@ -30,9 +30,9 @@ trait ExamplePlugin
      *
      * @throws InvalidRequestException
      */
-    public function getExamplePluginReport(string $segment = '', array $optional = []): bool|object
+    public function getExamplePluginReport(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('ExamplePlugin.getExampleReport', [
+        return $this->request('ExamplePlugin.getExampleReport', [
             'segment' => $segment,
         ], $optional);
     }

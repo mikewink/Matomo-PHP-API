@@ -19,9 +19,9 @@ trait VisitorInterest
      *
      * @throws InvalidRequestException
      */
-    public function getNumberOfVisitsPerDuration(string $segment = '', array $optional = []): object|bool
+    public function getNumberOfVisitsPerDuration(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitorInterest.getNumberOfVisitsPerVisitDuration', [
+        return $this->request('VisitorInterest.getNumberOfVisitsPerVisitDuration', [
             'segment' => $segment,
         ], $optional);
     }
@@ -31,9 +31,9 @@ trait VisitorInterest
      *
      * @throws InvalidRequestException
      */
-    public function getNumberOfVisitsPerPage(string $segment = '', array $optional = []): object|bool
+    public function getNumberOfVisitsPerPage(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitorInterest.getNumberOfVisitsPerPage', [
+        return $this->request('VisitorInterest.getNumberOfVisitsPerPage', [
             'segment' => $segment,
         ], $optional);
     }
@@ -43,9 +43,9 @@ trait VisitorInterest
      *
      * @throws InvalidRequestException
      */
-    public function getNumberOfVisitsByDaySinceLast(string $segment = '', array $optional = []): object|bool
+    public function getNumberOfVisitsByDaySinceLast(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitorInterest.getNumberOfVisitsByDaysSinceLast', [
+        return $this->request('VisitorInterest.getNumberOfVisitsByDaysSinceLast', [
             'segment' => $segment,
         ], $optional);
     }
@@ -55,9 +55,9 @@ trait VisitorInterest
      *
      * @throws InvalidRequestException
      */
-    public function getNumberOfVisitsByCount(string $segment = '', array $optional = []): object|bool
+    public function getNumberOfVisitsByCount(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitorInterest.getNumberOfVisitsByVisitCount', [
+        return $this->request('VisitorInterest.getNumberOfVisitsByVisitCount', [
             'segment' => $segment,
         ], $optional);
     }

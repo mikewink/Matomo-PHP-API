@@ -20,9 +20,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getVisitsSummary(string $segment = '', string $columns = '', array $optional = []): object|bool
+    public function getVisitsSummary(string $segment = '', string $columns = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.get', [
+        return $this->request('VisitsSummary.get', [
             'segment' => $segment,
             'columns' => $columns,
         ], $optional);
@@ -33,9 +33,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getVisits(string $segment = '', array $optional = []): int|object|bool
+    public function getVisits(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.getVisits', [
+        return $this->request('VisitsSummary.getVisits', [
             'segment' => $segment,
         ], $optional);
     }
@@ -45,9 +45,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getUniqueVisitors(string $segment = '', array $optional = []): int|object|bool
+    public function getUniqueVisitors(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.getUniqueVisitors', [
+        return $this->request('VisitsSummary.getUniqueVisitors', [
             'segment' => $segment,
         ], $optional);
     }
@@ -57,9 +57,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getUserVisitors(string $segment = '', array $optional = []): object|bool
+    public function getUserVisitors(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.getUsers', [
+        return $this->request('VisitsSummary.getUsers', [
             'segment' => $segment,
         ], $optional);
     }
@@ -69,9 +69,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getActions(string $segment = '', array $optional = []): object|bool
+    public function getActions(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.getActions', [
+        return $this->request('VisitsSummary.getActions', [
             'segment' => $segment,
         ], $optional);
     }
@@ -81,9 +81,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getMaxActions(string $segment = '', array $optional = []): object|bool
+    public function getMaxActions(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.getMaxActions', [
+        return $this->request('VisitsSummary.getMaxActions', [
             'segment' => $segment,
         ], $optional);
     }
@@ -93,9 +93,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getBounceCount(string $segment = '', array $optional = []): object|bool
+    public function getBounceCount(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.getBounceCount', [
+        return $this->request('VisitsSummary.getBounceCount', [
             'segment' => $segment,
         ], $optional);
     }
@@ -105,9 +105,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getVisitsConverted(string $segment = '', array $optional = []): object|bool
+    public function getVisitsConverted(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.getVisitsConverted', [
+        return $this->request('VisitsSummary.getVisitsConverted', [
             'segment' => $segment,
         ], $optional);
     }
@@ -117,9 +117,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getSumVisitsLength(string $segment = '', array $optional = []): object|bool
+    public function getSumVisitsLength(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.getSumVisitsLength', [
+        return $this->request('VisitsSummary.getSumVisitsLength', [
             'segment' => $segment,
         ], $optional);
     }
@@ -129,9 +129,9 @@ trait VisitsSummary
      *
      * @throws InvalidRequestException
      */
-    public function getSumVisitsLengthPretty(string $segment = '', array $optional = []): string|object|bool
+    public function getSumVisitsLengthPretty(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('VisitsSummary.getSumVisitsLengthPretty', [
+        return $this->request('VisitsSummary.getSumVisitsLengthPretty', [
             'segment' => $segment,
         ], $optional);
     }

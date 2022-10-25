@@ -18,9 +18,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getAction(string $segment = '', string $columns = '', array $optional = []): bool|object
+    public function getAction(string $segment = '', string $columns = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.get', [
+        return $this->request('Actions.get', [
             'segment' => $segment,
             'columns' => $columns,
         ], $optional);
@@ -31,9 +31,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getPageUrls(string $segment = '', array $optional = []): bool|object
+    public function getPageUrls(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getPageUrls', [
+        return $this->request('Actions.getPageUrls', [
             'segment' => $segment,
         ], $optional);
     }
@@ -43,9 +43,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getPageUrlsFollowingSiteSearch(string $segment = '', array $optional = []): bool|object
+    public function getPageUrlsFollowingSiteSearch(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getPageUrlsFollowingSiteSearch', [
+        return $this->request('Actions.getPageUrlsFollowingSiteSearch', [
             'segment' => $segment,
         ], $optional);
     }
@@ -55,9 +55,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getPageTitlesFollowingSiteSearch(string $segment = '', array $optional = []): bool|object
+    public function getPageTitlesFollowingSiteSearch(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getPageTitlesFollowingSiteSearch', [
+        return $this->request('Actions.getPageTitlesFollowingSiteSearch', [
             'segment' => $segment,
         ], $optional);
     }
@@ -67,9 +67,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getEntryPageUrls(string $segment = '', array $optional = []): bool|object
+    public function getEntryPageUrls(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getEntryPageUrls', [
+        return $this->request('Actions.getEntryPageUrls', [
             'segment' => $segment,
         ], $optional);
     }
@@ -79,9 +79,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getExitPageUrls(string $segment = '', array $optional = []): bool|object
+    public function getExitPageUrls(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getExitPageUrls', [
+        return $this->request('Actions.getExitPageUrls', [
             'segment' => $segment,
         ], $optional);
     }
@@ -93,9 +93,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getPageUrl(string $pageUrl, string $segment = '', array $optional = []): bool|object
+    public function getPageUrl(string $pageUrl, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getPageUrl', [
+        return $this->request('Actions.getPageUrl', [
             'pageUrl' => $pageUrl,
             'segment' => $segment,
         ], $optional);
@@ -106,9 +106,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getPageTitles(string $segment = '', array $optional = []): bool|object
+    public function getPageTitles(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getPageTitles', [
+        return $this->request('Actions.getPageTitles', [
             'segment' => $segment,
         ], $optional);
     }
@@ -118,9 +118,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getEntryPageTitles(string $segment = '', array $optional = []): bool|object
+    public function getEntryPageTitles(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getEntryPageTitles', [
+        return $this->request('Actions.getEntryPageTitles', [
             'segment' => $segment,
         ], $optional);
     }
@@ -130,9 +130,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getExitPageTitles(string $segment = '', array $optional = []): bool|object
+    public function getExitPageTitles(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getExitPageTitles', [
+        return $this->request('Actions.getExitPageTitles', [
             'segment' => $segment,
         ], $optional);
     }
@@ -144,9 +144,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getPageTitle(string $pageName, string $segment = '', array $optional = []): bool|object
+    public function getPageTitle(string $pageName, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getPageTitle', [
+        return $this->request('Actions.getPageTitle', [
             'pageName' => $pageName,
             'segment' => $segment,
         ], $optional);
@@ -157,9 +157,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getDownloads(string $segment = '', array $optional = []): bool|object
+    public function getDownloads(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getDownloads', [
+        return $this->request('Actions.getDownloads', [
             'segment' => $segment,
         ], $optional);
     }
@@ -171,9 +171,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getDownload(string $downloadUrl, string $segment = '', array $optional = []): bool|object
+    public function getDownload(string $downloadUrl, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getDownload', [
+        return $this->request('Actions.getDownload', [
             'downloadUrl' => $downloadUrl,
             'segment' => $segment,
         ], $optional);
@@ -184,9 +184,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getOutlinks(string $segment = '', array $optional = []): bool|object
+    public function getOutlinks(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getOutlinks', [
+        return $this->request('Actions.getOutlinks', [
             'segment' => $segment,
         ], $optional);
     }
@@ -198,9 +198,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getOutlink(string $outlinkUrl, string $segment = '', array $optional = []): bool|object
+    public function getOutlink(string $outlinkUrl, string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getOutlink', [
+        return $this->request('Actions.getOutlink', [
             'outlinkUrl' => $outlinkUrl,
             'segment' => $segment,
         ], $optional);
@@ -211,9 +211,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getSiteSearchKeywords(string $segment = '', array $optional = []): bool|object
+    public function getSiteSearchKeywords(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getSiteSearchKeywords', [
+        return $this->request('Actions.getSiteSearchKeywords', [
             'segment' => $segment,
         ], $optional);
     }
@@ -223,9 +223,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getSiteSearchNoResultKeywords(string $segment = '', array $optional = []): bool|object
+    public function getSiteSearchNoResultKeywords(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getSiteSearchNoResultKeywords', [
+        return $this->request('Actions.getSiteSearchNoResultKeywords', [
             'segment' => $segment,
         ], $optional);
     }
@@ -235,9 +235,9 @@ trait Actions
      *
      * @throws InvalidRequestException
      */
-    public function getSiteSearchCategories(string $segment = '', array $optional = []): bool|object
+    public function getSiteSearchCategories(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Actions.getSiteSearchCategories', [
+        return $this->request('Actions.getSiteSearchCategories', [
             'segment' => $segment,
         ], $optional);
     }

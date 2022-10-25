@@ -19,9 +19,9 @@ trait Annotations
      *
      * @throws InvalidRequestException
      */
-    public function addAnnotation(string $note, int $starred = 0, array $optional = []): bool|object
+    public function addAnnotation(string $note, int $starred = 0, array $optional = []): mixed
     {
-        return $this->_request('Annotations.add', [
+        return $this->request('Annotations.add', [
             'note' => $note,
             'starred' => $starred,
         ], $optional);
@@ -32,9 +32,9 @@ trait Annotations
      *
      * @throws InvalidRequestException
      */
-    public function saveAnnotation(int $idNote, string $note = '', string $starred = '', array $optional = []): bool|object
+    public function saveAnnotation(int $idNote, string $note = '', string $starred = '', array $optional = []): mixed
     {
-        return $this->_request('Annotations.save', [
+        return $this->request('Annotations.save', [
             'idNote' => $idNote,
             'note' => $note,
             'starred' => $starred,
@@ -46,9 +46,9 @@ trait Annotations
      *
      * @throws InvalidRequestException
      */
-    public function deleteAnnotation(int $idNote, array $optional = []): bool|object
+    public function deleteAnnotation(int $idNote, array $optional = []): mixed
     {
-        return $this->_request('Annotations.delete', [
+        return $this->request('Annotations.delete', [
             'idNote' => $idNote,
         ], $optional);
     }
@@ -58,9 +58,9 @@ trait Annotations
      *
      * @throws InvalidRequestException
      */
-    public function deleteAllAnnotations(array $optional = []): bool|object
+    public function deleteAllAnnotations(array $optional = []): mixed
     {
-        return $this->_request('Annotations.deleteAll', [], $optional);
+        return $this->request('Annotations.deleteAll', [], $optional);
     }
 
     /**
@@ -68,9 +68,9 @@ trait Annotations
      *
      * @throws InvalidRequestException
      */
-    public function getAnnotation(int $idNote, array $optional = []): bool|object
+    public function getAnnotation(int $idNote, array $optional = []): mixed
     {
-        return $this->_request('Annotations.get', [
+        return $this->request('Annotations.get', [
             'idNote' => $idNote,
         ], $optional);
     }
@@ -80,9 +80,9 @@ trait Annotations
      *
      * @throws InvalidRequestException
      */
-    public function getAllAnnotation(string $lastN = '', array $optional = []): bool|object
+    public function getAllAnnotation(string $lastN = '', array $optional = []): mixed
     {
-        return $this->_request('Annotations.getAll', [
+        return $this->request('Annotations.getAll', [
             'lastN' => $lastN,
         ], $optional);
     }
@@ -92,9 +92,9 @@ trait Annotations
      *
      * @throws InvalidRequestException
      */
-    public function getAnnotationCountForDates(int $lastN, string $getAnnotationText, array $optional = []): bool|object
+    public function getAnnotationCountForDates(int $lastN, string $getAnnotationText, array $optional = []): mixed
     {
-        return $this->_request('Annotations.getAnnotationCountForDates', [
+        return $this->request('Annotations.getAnnotationCountForDates', [
             'lastN' => $lastN,
             'getAnnotationText' => $getAnnotationText
         ], $optional);

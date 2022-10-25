@@ -18,8 +18,8 @@ trait Dashboard
      *
      * @throws InvalidRequestException
      */
-    public function getDashboards(array $optional = []): object|bool
+    public function getDashboards(array $optional = []): mixed
     {
-        return $this->_request('Dashboard.getDashboards', [], $optional);
+        return $this->request('Dashboard.getDashboards', [], $optional);
     }
 }

@@ -18,9 +18,9 @@ trait UserId
      *
      * @throws InvalidRequestException
      */
-    public function getUsersById(string $segment = '', array $optional = []): bool|object
+    public function getUsersById(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('UserId.getUsers', [
+        return $this->request('UserId.getUsers', [
             'segment' => $segment,
         ], $optional);
     }

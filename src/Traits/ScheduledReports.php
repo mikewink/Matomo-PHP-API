@@ -29,9 +29,9 @@ trait ScheduledReports
         string $parameters,
         string $idSegment = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('ScheduledReports.addReport', [
+        return $this->request('ScheduledReports.addReport', [
             'description' => $description,
             'period' => $period,
             'hour' => $hour,
@@ -59,9 +59,9 @@ trait ScheduledReports
         string $parameters,
         string $idSegment = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('ScheduledReports.updateReport', [
+        return $this->request('ScheduledReports.updateReport', [
             'idReport' => $idReport,
             'description' => $description,
             'period' => $period,
@@ -79,9 +79,9 @@ trait ScheduledReports
      *
      * @throws InvalidRequestException
      */
-    public function deleteReport(int $idReport, array $optional = []): bool|object
+    public function deleteReport(int $idReport, array $optional = []): mixed
     {
-        return $this->_request('ScheduledReports.deleteReport', [
+        return $this->request('ScheduledReports.deleteReport', [
             'idReport' => $idReport,
         ], $optional);
     }
@@ -96,9 +96,9 @@ trait ScheduledReports
         string $ifSuperUserReturnOnlySuperUserReports = '',
         string $idSegment = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('ScheduledReports.getReports', [
+        return $this->request('ScheduledReports.getReports', [
             'idReport' => $idReport,
             'ifSuperUserReturnOnlySuperUserReports' => $ifSuperUserReturnOnlySuperUserReports,
             'idSegment' => $idSegment,
@@ -117,9 +117,9 @@ trait ScheduledReports
         string $reportFormat = '',
         string $parameters = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('ScheduledReports.generateReport', [
+        return $this->request('ScheduledReports.generateReport', [
             'idReport' => $idReport,
             'language' => $language,
             'outputType' => $outputType,
@@ -133,9 +133,9 @@ trait ScheduledReports
      *
      * @throws InvalidRequestException
      */
-    public function sendReport(int $idReport, string $force = '', array $optional = []): bool|object
+    public function sendReport(int $idReport, string $force = '', array $optional = []): mixed
     {
-        return $this->_request('ScheduledReports.sendReport', [
+        return $this->request('ScheduledReports.sendReport', [
             'idReport' => $idReport,
             'force' => $force,
         ], $optional);

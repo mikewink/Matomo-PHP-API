@@ -18,9 +18,9 @@ trait Goals
      *
      * @throws InvalidRequestException
      */
-    public function getGoals(array $optional = []): bool|object
+    public function getGoals(array $optional = []): mixed
     {
-        return $this->_request('Goals.getGoals', [], $optional);
+        return $this->request('Goals.getGoals', [], $optional);
     }
 
     /**
@@ -37,9 +37,9 @@ trait Goals
         string $revenue = '',
         string $allowMultipleConversionsPerVisit = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('Goals.addGoal', [
+        return $this->request('Goals.addGoal', [
             'name' => $name,
             'matchAttribute' => $matchAttribute,
             'pattern' => $pattern,
@@ -65,9 +65,9 @@ trait Goals
         string $revenue = '',
         string $allowMultipleConversionsPerVisit = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('Goals.updateGoal', [
+        return $this->request('Goals.updateGoal', [
             'idGoal' => $idGoal,
             'name' => $name,
             'matchAttribute' => $matchAttribute,
@@ -84,9 +84,9 @@ trait Goals
      *
      * @throws InvalidRequestException
      */
-    public function deleteGoal(int $idGoal, array $optional = []): bool|object
+    public function deleteGoal(int $idGoal, array $optional = []): mixed
     {
-        return $this->_request('Goals.deleteGoal', [
+        return $this->request('Goals.deleteGoal', [
             'idGoal' => $idGoal,
         ], $optional);
     }
@@ -96,9 +96,9 @@ trait Goals
      *
      * @throws InvalidRequestException
      */
-    public function getItemsSku(string $abandonedCarts, array $optional = []): bool|object
+    public function getItemsSku(string $abandonedCarts, array $optional = []): mixed
     {
-        return $this->_request('Goals.getItemsSku', [
+        return $this->request('Goals.getItemsSku', [
             'abandonedCarts' => $abandonedCarts,
         ], $optional);
     }
@@ -108,9 +108,9 @@ trait Goals
      *
      * @throws InvalidRequestException
      */
-    public function getItemsName(bool $abandonedCarts, array $optional = []): bool|object
+    public function getItemsName(bool $abandonedCarts, array $optional = []): mixed
     {
-        return $this->_request('Goals.getItemsName', [
+        return $this->request('Goals.getItemsName', [
             'abandonedCarts' => $abandonedCarts,
         ], $optional);
     }
@@ -120,9 +120,9 @@ trait Goals
      *
      * @throws InvalidRequestException
      */
-    public function getItemsCategory(bool $abandonedCarts, array $optional = []): bool|object
+    public function getItemsCategory(bool $abandonedCarts, array $optional = []): mixed
     {
-        return $this->_request('Goals.getItemsCategory', [
+        return $this->request('Goals.getItemsCategory', [
             'abandonedCarts' => $abandonedCarts,
         ], $optional);
     }
@@ -132,9 +132,9 @@ trait Goals
      *
      * @throws InvalidRequestException
      */
-    public function getGoal(string $segment = '', string $idGoal = '', array $columns = [], array $optional = []): bool|object
+    public function getGoal(string $segment = '', string $idGoal = '', array $columns = [], array $optional = []): mixed
     {
-        return $this->_request('Goals.get', [
+        return $this->request('Goals.get', [
             'segment' => $segment,
             'idGoal' => $idGoal,
             'columns' => $columns,
@@ -146,9 +146,9 @@ trait Goals
      *
      * @throws InvalidRequestException
      */
-    public function getDaysToConversion(string $segment = '', string $idGoal = '', array $optional = []): bool|object
+    public function getDaysToConversion(string $segment = '', string $idGoal = '', array $optional = []): mixed
     {
-        return $this->_request('Goals.getDaysToConversion', [
+        return $this->request('Goals.getDaysToConversion', [
             'segment' => $segment,
             'idGoal' => $idGoal,
         ], $optional);
@@ -159,9 +159,9 @@ trait Goals
      *
      * @throws InvalidRequestException
      */
-    public function getVisitsUntilConversion(string $segment = '', string $idGoal = '', array $optional = []): bool|object
+    public function getVisitsUntilConversion(string $segment = '', string $idGoal = '', array $optional = []): mixed
     {
-        return $this->_request('Goals.getVisitsUntilConversion', [
+        return $this->request('Goals.getVisitsUntilConversion', [
             'segment' => $segment,
             'idGoal' => $idGoal,
         ], $optional);

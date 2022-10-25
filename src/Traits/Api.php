@@ -16,128 +16,140 @@ use VisualAppeal\InvalidRequestException;
 trait Api
 {
     /**
-     * Get current Matomo version
-     * @throws InvalidRequestException
-     */
-    public function getMatomoVersion(array $optional = []): string|bool
-    {
-        return $this->_request('API.getMatomoVersion', [], $optional);
-    }
-
-    /**
-     * Get current ip address (from the server executing this script)
+     * Get current Matomo version.
      *
      * @throws InvalidRequestException
      */
-    public function getIpFromHeader(array $optional = []): bool|object
+    public function getMatomoVersion(array $optional = []): string
     {
-        return $this->_request('API.getIpFromHeader', [], $optional);
+        return $this->request(
+            method: 'API.getMatomoVersion',
+            optional: $optional
+        );
     }
 
     /**
-     * Get current settings
+     * Get current IP address from the server executing this script.
      *
      * @throws InvalidRequestException
      */
-    public function getSettings(array $optional = []): bool|object
+    public function getIpFromHeader(array $optional = []): mixed
     {
-        return $this->_request('API.getSettings', [], $optional);
+        return $this->request(
+            method: 'API.getIpFromHeader',
+            optional: $optional
+        );
     }
 
     /**
-     * Get default metric translations
+     * Get current settings.
      *
      * @throws InvalidRequestException
      */
-    public function getDefaultMetricTranslations(array $optional = []): bool|object
+    public function getSettings(array $optional = []): mixed
     {
-        return $this->_request('API.getDefaultMetricTranslations', [], $optional);
+        return $this->request(
+            method: 'API.getSettings',
+            optional: $optional
+        );
     }
 
     /**
-     * Get default metrics
+     * Get default metric translations.
      *
      * @throws InvalidRequestException
      */
-    public function getDefaultMetrics(array $optional = []): bool|object
+    public function getDefaultMetricTranslations(array $optional = []): mixed
     {
-        return $this->_request('API.getDefaultMetrics', [], $optional);
+        return $this->request(
+            method: 'API.getDefaultMetricTranslations',
+            optional: $optional
+        );
     }
 
     /**
-     * Get default processed metrics
+     * Get default metrics.
+     *
+     * @throws InvalidRequestException
+     */
+    public function getDefaultMetrics(array $optional = []): mixed
+    {
+        return $this->request(
+            method: 'API.getDefaultMetrics',
+            optional: $optional
+        );
+    }
+
+    /**
+     * Get default processed metrics.
 
      * @throws InvalidRequestException
      */
-    public function getDefaultProcessedMetrics(array $optional = []): bool|object
+    public function getDefaultProcessedMetrics(array $optional = []): mixed
     {
-        return $this->_request('API.getDefaultProcessedMetrics', [], $optional);
+        return $this->request('API.getDefaultProcessedMetrics', [], $optional);
     }
 
     /**
-     * Get default metrics documentation
-
+     * Get default metrics documentation.
+     *
      * @throws InvalidRequestException
      */
-    public function getDefaultMetricsDocumentation(array $optional = []): bool|object
+    public function getDefaultMetricsDocumentation(array $optional = []): mixed
     {
-        return $this->_request('API.getDefaultMetricsDocumentation', [], $optional);
+        return $this->request('API.getDefaultMetricsDocumentation', [], $optional);
     }
 
     /**
-     * Get default metric translations
+     * Get default metric translations.
      *
      * @param  array  $sites  Array with the ID's of the sites
      *
      * @throws \VisualAppeal\InvalidRequestException
      */
-    public function getSegmentsMetadata(array $sites = [], array $optional = []): bool|object
+    public function getSegmentsMetadata(array $sites = [], array $optional = []): mixed
     {
-        return $this->_request('API.getSegmentsMetadata', [
+        return $this->request('API.getSegmentsMetadata', [
             'idSites' => $sites
         ], $optional);
     }
 
     /**
-     * Get the url of the logo
+     * Get the URL of the logo.
      *
      * @param  bool  $pathOnly Return the url (false) or the absolute path (true)
      *
      * @throws InvalidRequestException
      */
-    public function getLogoUrl(bool $pathOnly = false, array $optional = []): bool|object
+    public function getLogoUrl(bool $pathOnly = false, array $optional = []): mixed
     {
-        return $this->_request('API.getLogoUrl', [
+        return $this->request('API.getLogoUrl', [
             'pathOnly' => $pathOnly
         ], $optional);
     }
 
     /**
-     * Get the url of the header logo
+     * Get the URL of the header logo.
      *
      * @param  bool  $pathOnly Return the url (false) or the absolute path (true)
      *
      * @throws InvalidRequestException
      */
-    public function getHeaderLogoUrl(bool $pathOnly = false, array $optional = []): bool|object
+    public function getHeaderLogoUrl(bool $pathOnly = false, array $optional = []): mixed
     {
-        return $this->_request('API.getHeaderLogoUrl', [
+        return $this->request('API.getHeaderLogoUrl', [
             'pathOnly' => $pathOnly
         ], $optional);
     }
 
     /**
-     * Get metadata from the API
-     *
-     * @param  string  $apiModule Module
-     * @param  string  $apiAction Action
-     * @param  array  $apiParameters Parameters
+     * Get metadata from the API.
      *
      * @throws InvalidRequestException
      */
-    public function getMetadata(string $apiModule, string $apiAction, array $apiParameters = [], array $optional = []): bool|object
+    public function getMetadata(string $apiModule, string $apiAction, array $apiParameters = [], array $optional = []): mixed
     {
-        return $this->_request('API.getMetadata', [
+        return $this->request('API.getMetadata', [
             'apiModule' => $apiModule,
             'apiAction' => $apiAction,
             'apiParameters' => $apiParameters,
@@ -145,7 +157,7 @@ trait Api
     }
 
     /**
-     * Get metadata from a report
+     * Get metadata from a report.
      *
      * @param array $idSites Array with the ID's of the sites
      *
@@ -156,9 +168,9 @@ trait Api
         string $hideMetricsDoc = '',
         string $showSubtableReports = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('API.getReportMetadata', [
+        return $this->request('API.getReportMetadata', [
             'idSites' => $idSites,
             'hideMetricsDoc' => $hideMetricsDoc,
             'showSubtableReports' => $showSubtableReports,
@@ -166,7 +178,7 @@ trait Api
     }
 
     /**
-     * Get processed report
+     * Get processed report.
      *
      * @param  string  $apiModule Module
      * @param  string  $apiAction Action
@@ -182,9 +194,9 @@ trait Api
         bool|string $showTimer = '1',
         string $hideMetricsDoc = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('API.getProcessedReport', [
+        return $this->request('API.getProcessedReport', [
             'apiModule' => $apiModule,
             'apiAction' => $apiAction,
             'segment' => $segment,
@@ -196,20 +208,20 @@ trait Api
     }
 
     /**
-     * Get Api
+     * Get API.
      *
      * @throws InvalidRequestException
      */
-    public function getApi(string $segment = '', string $columns = '', array $optional = []): bool|object
+    public function getApi(string $segment = '', string $columns = '', array $optional = []): mixed
     {
-        return $this->_request('API.get', [
+        return $this->request('API.get', [
             'segment' => $segment,
             'columns' => $columns,
         ], $optional);
     }
 
     /**
-     * Get row evolution
+     * Get row evolution.
      *
      * @throws \VisualAppeal\InvalidRequestException
      */
@@ -222,9 +234,9 @@ trait Api
         string $legendAppendMetric = '1',
         string $labelUseAbsoluteUrl = '1',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('API.getRowEvolution', [
+        return $this->request('API.getRowEvolution', [
             'apiModule' => $apiModule,
             'apiAction' => $apiAction,
             'segment' => $segment,
@@ -237,12 +249,13 @@ trait Api
 
     /**
      * Get the result of multiple requests bundled together.
+     *
      * Takes array of the API methods as an argument to send together.
      * For example, ['API.get', 'Action.get', 'DevicesDetection.getType']
      *
      * @throws InvalidRequestException
      */
-    public function getBulkRequest(array $methods = [], array $optional = []): bool|object
+    public function getBulkRequest(array $methods = [], array $optional = []): mixed
     {
         $urls = [];
 
@@ -250,7 +263,7 @@ trait Api
             $urls['urls[' . $key . ']'] = urlencode('method=' . $method);
         }
 
-        return $this->_request('API.getBulkRequest', $urls, $optional);
+        return $this->request('API.getBulkRequest', $urls, $optional);
     }
 
     /**
@@ -258,32 +271,31 @@ trait Api
      *
      * @throws InvalidRequestException
      */
-    public function getWidgetMetadata(): object|bool
+    public function getWidgetMetadata(): mixed
     {
-        return $this->_request('API.getWidgetMetadata');
+        return $this->request('API.getWidgetMetadata');
     }
 
     /**
-     * Get a list of all available pages that exist including the widgets they include.
+     * Get a list of all available pages that exist including the widgets they
+     * include.
      *
      * @throws InvalidRequestException
      */
-    public function getReportPagesMetadata(): object|bool
+    public function getReportPagesMetadata(): mixed
     {
-        return $this->_request('API.getReportPagesMetadata');
+        return $this->request('API.getReportPagesMetadata');
     }
 
     /**
-     * Get suggested values for segments
-     *
+     * Get suggested values for segments.
      *
      * @throws InvalidRequestException
      */
-    public function getSuggestedValuesForSegment(string $segmentName, array $optional = []): bool|object
+    public function getSuggestedValuesForSegment(string $segmentName, array $optional = []): mixed
     {
-        return $this->_request('API.getSuggestedValuesForSegment', [
+        return $this->request('API.getSuggestedValuesForSegment', [
             'segmentName' => $segmentName,
         ], $optional);
     }
-
 }

@@ -19,9 +19,9 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function areSMSAPICredentialProvided(array $optional = []): bool|object
+    public function areSMSAPICredentialProvided(array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.areSMSAPICredentialProvided', [], $optional);
+        return $this->request('MobileMessaging.areSMSAPICredentialProvided', [], $optional);
     }
 
     /**
@@ -29,9 +29,9 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function getSMSProvider(array $optional = []): bool|object
+    public function getSMSProvider(array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.getSMSProvider', [], $optional);
+        return $this->request('MobileMessaging.getSMSProvider', [], $optional);
     }
 
     /**
@@ -39,9 +39,9 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function setSMSAPICredential(string $provider, string $apiKey, array $optional = []): bool|object
+    public function setSMSAPICredential(string $provider, string $apiKey, array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.setSMSAPICredential', [
+        return $this->request('MobileMessaging.setSMSAPICredential', [
             'provider' => $provider,
             'apiKey' => $apiKey,
         ], $optional);
@@ -52,9 +52,9 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function addPhoneNumber(string $phoneNumber, array $optional = []): bool|object
+    public function addPhoneNumber(string $phoneNumber, array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.addPhoneNumber', [
+        return $this->request('MobileMessaging.addPhoneNumber', [
             'phoneNumber' => $phoneNumber,
         ], $optional);
     }
@@ -64,9 +64,9 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function getCreditLeft(array $optional = []): bool|object
+    public function getCreditLeft(array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.getCreditLeft', [], $optional);
+        return $this->request('MobileMessaging.getCreditLeft', [], $optional);
     }
 
     /**
@@ -74,9 +74,9 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function removePhoneNumber(string $phoneNumber, array $optional = []): bool|object
+    public function removePhoneNumber(string $phoneNumber, array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.removePhoneNumber', [
+        return $this->request('MobileMessaging.removePhoneNumber', [
             'phoneNumber' => $phoneNumber,
         ], $optional);
     }
@@ -86,9 +86,9 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function validatePhoneNumber(string $phoneNumber, string $verificationCode, array $optional = []): bool|object
+    public function validatePhoneNumber(string $phoneNumber, string $verificationCode, array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.validatePhoneNumber', [
+        return $this->request('MobileMessaging.validatePhoneNumber', [
             'phoneNumber' => $phoneNumber,
             'verificationCode' => $verificationCode,
         ], $optional);
@@ -99,9 +99,9 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function deleteSMSAPICredential(array $optional = []): bool|object
+    public function deleteSMSAPICredential(array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.deleteSMSAPICredential', [], $optional);
+        return $this->request('MobileMessaging.deleteSMSAPICredential', [], $optional);
     }
 
     /**
@@ -109,9 +109,9 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function setDelegatedManagement(string $delegatedManagement, array $optional = []): bool|object
+    public function setDelegatedManagement(string $delegatedManagement, array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.setDelegatedManagement', [
+        return $this->request('MobileMessaging.setDelegatedManagement', [
             'delegatedManagement' => $delegatedManagement,
         ], $optional);
     }
@@ -121,8 +121,8 @@ trait MobileMessaging
      *
      * @throws InvalidRequestException
      */
-    public function getDelegatedManagement(array $optional = []): bool|object
+    public function getDelegatedManagement(array $optional = []): mixed
     {
-        return $this->_request('MobileMessaging.getDelegatedManagement', [], $optional);
+        return $this->request('MobileMessaging.getDelegatedManagement', [], $optional);
     }
 }

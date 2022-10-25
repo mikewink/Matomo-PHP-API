@@ -45,9 +45,9 @@ trait ImageGraph
         string $idGoal = '',
         array $colors = [],
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('ImageGraph.get', [
+        return $this->request('ImageGraph.get', [
             'apiModule' => $apiModule,
             'apiAction' => $apiAction,
             'graphType' => $graphType,

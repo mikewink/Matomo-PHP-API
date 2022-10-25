@@ -19,9 +19,9 @@ trait Transitions
      * @throws InvalidRequestException
      */
     public function getTransitionsForPageTitle(string $pageTitle, string $segment = '',
-        string $limitBeforeGrouping = '', array $optional = []): bool|object
+        string $limitBeforeGrouping = '', array $optional = []): mixed
     {
-        return $this->_request('Transitions.getTransitionsForPageTitle', [
+        return $this->request('Transitions.getTransitionsForPageTitle', [
             'pageTitle' => $pageTitle,
             'segment' => $segment,
             'limitBeforeGrouping' => $limitBeforeGrouping,
@@ -34,9 +34,9 @@ trait Transitions
      * @throws InvalidRequestException
      */
     public function getTransitionsForPageUrl(string $pageUrl, string $segment = '',
-        string $limitBeforeGrouping = '', array $optional = []): bool|object
+        string $limitBeforeGrouping = '', array $optional = []): mixed
     {
-        return $this->_request('Transitions.getTransitionsForPageTitle', [
+        return $this->request('Transitions.getTransitionsForPageTitle', [
             'pageUrl' => $pageUrl,
             'segment' => $segment,
             'limitBeforeGrouping' => $limitBeforeGrouping,
@@ -56,9 +56,9 @@ trait Transitions
         string $parts = 'all',
         string $returnNormalizedUrls = '',
         array $optional = []
-    ): bool|object
+    ): mixed
     {
-        return $this->_request('Transitions.getTransitionsForAction', [
+        return $this->request('Transitions.getTransitionsForAction', [
             'actionName' => $actionName,
             'actionType' => $actionType,
             'segment' => $segment,
@@ -73,9 +73,9 @@ trait Transitions
      *
      * @throws InvalidRequestException
      */
-    public function getTransitionsTranslations(array $optional = []): bool|object
+    public function getTransitionsTranslations(array $optional = []): mixed
     {
-        return $this->_request('Transitions.getTranslations', [], $optional);
+        return $this->request('Transitions.getTranslations', [], $optional);
     }
 
 }

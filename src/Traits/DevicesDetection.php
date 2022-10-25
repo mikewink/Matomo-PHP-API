@@ -19,9 +19,9 @@ trait DevicesDetection
      *
      * @throws InvalidRequestException
      */
-    public function getDeviceType(string $segment = '', array $optional = []): object|bool
+    public function getDeviceType(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('DevicesDetection.getType', [
+        return $this->request('DevicesDetection.getType', [
             'segment' => $segment,
         ], $optional);
     }
@@ -31,9 +31,9 @@ trait DevicesDetection
      *
      * @throws InvalidRequestException
      */
-    public function getDeviceBrand(string $segment = '', array $optional = []): bool|object
+    public function getDeviceBrand(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('DevicesDetection.getBrand', [
+        return $this->request('DevicesDetection.getBrand', [
             'segment' => $segment,
         ], $optional);
     }
@@ -43,9 +43,9 @@ trait DevicesDetection
      *
      * @throws InvalidRequestException
      */
-    public function getDeviceModel(string $segment = '', array $optional = []): bool|object
+    public function getDeviceModel(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('DevicesDetection.getModel', [
+        return $this->request('DevicesDetection.getModel', [
             'segment' => $segment,
         ], $optional);
     }
@@ -55,9 +55,9 @@ trait DevicesDetection
      *
      * @throws InvalidRequestException
      */
-    public function getOSFamilies(string $segment = '', array $optional = []): bool|object
+    public function getOSFamilies(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('DevicesDetection.getOsFamilies', [
+        return $this->request('DevicesDetection.getOsFamilies', [
             'segment' => $segment,
         ], $optional);
     }
@@ -67,9 +67,9 @@ trait DevicesDetection
      *
      * @throws InvalidRequestException
      */
-    public function getOsVersions(string $segment = '', array $optional = []): bool|object
+    public function getOsVersions(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('DevicesDetection.getOsVersions', [
+        return $this->request('DevicesDetection.getOsVersions', [
             'segment' => $segment,
         ], $optional);
     }
@@ -79,9 +79,9 @@ trait DevicesDetection
      *
      * @throws InvalidRequestException
      */
-    public function getBrowsers(string $segment = '', array $optional = []): bool|object
+    public function getBrowsers(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('DevicesDetection.getBrowsers', [
+        return $this->request('DevicesDetection.getBrowsers', [
             'segment' => $segment,
         ], $optional);
     }
@@ -91,9 +91,9 @@ trait DevicesDetection
      *
      * @throws InvalidRequestException
      */
-    public function getBrowserVersions(string $segment = '', array $optional = []): bool|object
+    public function getBrowserVersions(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('DevicesDetection.getBrowserVersions', [
+        return $this->request('DevicesDetection.getBrowserVersions', [
             'segment' => $segment,
         ], $optional);
     }
@@ -103,9 +103,9 @@ trait DevicesDetection
      *
      * @throws InvalidRequestException
      */
-    public function getBrowserEngines(string $segment = '', array $optional = []): bool|object
+    public function getBrowserEngines(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('DevicesDetection.getBrowserEngines', [
+        return $this->request('DevicesDetection.getBrowserEngines', [
             'segment' => $segment,
         ], $optional);
     }

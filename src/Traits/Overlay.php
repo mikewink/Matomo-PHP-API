@@ -16,9 +16,9 @@ trait Overlay
      *
      * @throws InvalidRequestException
      */
-    public function getOverlayTranslations(array $optional = []): bool|object
+    public function getOverlayTranslations(array $optional = []): mixed
     {
-        return $this->_request('Overlay.getTranslations', [], $optional);
+        return $this->request('Overlay.getTranslations', [], $optional);
     }
 
     /**
@@ -26,9 +26,9 @@ trait Overlay
      *
      * @throws InvalidRequestException
      */
-    public function getOverlayExcludedQueryParameters(array $optional = []): bool|object
+    public function getOverlayExcludedQueryParameters(array $optional = []): mixed
     {
-        return $this->_request('Overlay.getExcludedQueryParameters', [], $optional);
+        return $this->request('Overlay.getExcludedQueryParameters', [], $optional);
     }
 
     /**
@@ -36,9 +36,9 @@ trait Overlay
      *
      * @throws InvalidRequestException
      */
-    public function getOverlayFollowingPages(string $segment = '', array $optional = []): bool|object
+    public function getOverlayFollowingPages(string $segment = '', array $optional = []): mixed
     {
-        return $this->_request('Overlay.getFollowingPages', [
+        return $this->request('Overlay.getFollowingPages', [
             'segment' => $segment,
         ], $optional);
     }
